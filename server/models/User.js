@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
-//const bcrypt = require("bcrypt");
-var SHA256 = require("crypto-js/sha256");
+const SHA256 = require("crypto-js/sha256");
+const Base64 = require("crypto-js/enc-base64");
 
 const userSchema = new Schema(
   {
@@ -34,9 +34,7 @@ const userSchema = new Schema(
 // hash user password
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
-    // const saltRounds = 10;
-    // this.password = await bcrypt.hash(this.password, saltRounds);
-    this.password = SHA256(this.password);
+    this.password = Base64.stringify(SHA256(this.password));
   }
 
   next();
@@ -44,8 +42,8 @@ userSchema.pre("save", async function (next) {
 
 // custom method to compare and validate password for logging in
 userSchema.methods.isCorrectPassword = async function (password) {
-  //return bcrypt.compare(password, this.password);
-  return SHA256(password) === this.password;
+  const hash = Base64.stringify(SHA256(password));
+  return hash === this.password;
 };
 
 const User = model("User", userSchema);

@@ -7,12 +7,12 @@ const resolvers = {
   Query: {
     // query that returns the current user, pulls the user's id from context
     me: async (parent, args, context) => {
-      return await User.findOne({ _id: context.user._id });
+      return await User.findOne({ _id: context.user._id }).populate("team");
     },
 
     // query that returns all users
     users: async () => {
-      return await User.find({});
+      return await User.find({}).populate("team");
     },
   },
 

@@ -11,6 +11,12 @@ const typeDefs = gql`
     is_admin: Boolean
     is_locked: Boolean
     last_login: Date
+    team: [TeamMember]
+  }
+
+  type TeamMember {
+    _id: ID
+    name: String!
   }
 
   type Auth {

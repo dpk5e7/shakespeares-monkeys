@@ -1,32 +1,34 @@
-const db = require('../config/connection');
-//const { User, Team } = require('../models');
-const { User } = require("../models");
-const userSeeds = require('./userSeeds.json');
-//const teamSeeds = require('./teamSeeds.json');
+const db = require("../config/connection");
+const mongoose = require("mongoose");
+const { User, TeamMember } = require("../models");
+//const { User } = require("../models");
+const userSeeds = require("./userSeeds.json");
+const teamMemberSeeds = require("./teamSeeds.json");
 
-db.once('open', async () => {
+db.once("open", async () => {
   try {
-    //await Team.deleteMany({});
+    await TeamMember.deleteMany({});
     await User.deleteMany({});
 
     await User.create(userSeeds);
 
-    // for (let i = 0; i < teamSeeds.length; i++) {
-    //   const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
-    //   const user = await User.findOneAndUpdate(
-    //     { username: thoughtAuthor },
-    //     {
-    //       $addToSet: {
-    //         thoughts: _id,
-    //       },
-    //     }
-    //   );
-    // }
+    const users = await User.find({});
+
+    for (let user of users) {
+      for (let i = 0; i < 5; i++) {
+        const teamMember = await TeamMember.create(
+          teamMemberSeeds[Math.floor(Math.random() * teamMemberSeeds.length)]
+        );
+        
+        await user.team.push(teamMember);
+        await user.save();
+      }
+    }
   } catch (err) {
     console.error(err);
     process.exit(1);
   }
 
-  console.log('all done!');
+  console.log("All done!");
   process.exit(0);
 });

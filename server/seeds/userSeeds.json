@@ -2,7 +2,8 @@
   {
     "username": "Dan",
     "email": "d@k.com",
-    "password": "1qazXSW@"
+    "password": "1qazXSW@",
+    "is_admin": true
   },
   {
     "username": "Parker",

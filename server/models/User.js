@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Team = require("./TeamMember");
 const SHA256 = require("crypto-js/sha256");
 const Base64 = require("crypto-js/enc-base64");
 
@@ -8,7 +9,9 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true,
     },
+
     email: {
       type: String,
       required: true,
@@ -18,15 +21,42 @@ const userSchema = new Schema(
         "Must use a valid email address",
       ],
     },
+
     password: {
       type: String,
       required: true,
     },
+
+    last_login: {
+      type: Date,
+      required: true,
+      default: Date.now,
+    },
+
+    is_admin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+
+    is_locked: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+
+    team: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "TeamMember",
+      },
+    ],
   },
   // set this to use virtual below
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
   }
 );
@@ -45,6 +75,11 @@ userSchema.methods.isCorrectPassword = async function (password) {
   const hash = Base64.stringify(SHA256(password));
   return hash === this.password;
 };
+
+// Virtual to return the user's number of friends
+userSchema.virtual("teamMemberCount").get(function () {
+  return this.team.length;
+});
 
 const User = model("User", userSchema);
 

@@ -8,6 +8,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      trim: true,
     },
     email: {
       type: String,
@@ -22,11 +23,27 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    last_login: {
+      type: Date,
+      required: true,
+      default: Date.now,
+    },
+    is_admin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    is_locked: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   // set this to use virtual below
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
   }
 );

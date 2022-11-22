@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
-const AES = require("crypto-js/AES");
-const Base64 = require("crypto-js/enc-base64");
+const crypto = require("../utils/crypto");
 
 // Schema to create a team member /////////////////////////////
 const teamMemberSchema = new Schema(
@@ -18,6 +17,7 @@ const teamMemberSchema = new Schema(
           /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
           "Must use a valid email address",
         ],
+        set: (v) => v.toLowerCase(),
       },
       phoneNumber: {
         type: String,
@@ -47,17 +47,23 @@ const teamMemberSchema = new Schema(
     familySituation: {
       type: String,
       required: false,
+      set: (text) => crypto.encrypt(text),
+      get: (text) => crypto.decrypt(text),
     },
 
     importantDates: [
       {
         importantDate: {
-          type: Date,
+          type: String, // This is a string so that we can encrypt it
           required: false,
+          set: (text) => crypto.encrypt(text),
+          get: (text) => crypto.decrypt(text),
         },
         description: {
           type: String,
           required: false,
+          set: (text) => crypto.encrypt(text),
+          get: (text) => crypto.decrypt(text),
         },
       },
     ],
@@ -67,29 +73,39 @@ const teamMemberSchema = new Schema(
       required: false,
     },
 
-    skills: {
-      type: String,
-      required: false,
-    },
+    skills: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
 
-    responsibilities: {
-      type: String,
-      required: false,
-    },
+    responsibilities: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
 
-    training: {
-      type: String,
-      required: false,
-    },
+    training: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
 
-    personalInterests: {
-      type: String,
-      required: false,
-    },
+    personalInterests: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
 
     notes: {
       type: String,
       required: false,
+      set: (text) => crypto.encrypt(text),
+      get: (text) => crypto.decrypt(text),
     },
   },
   {
@@ -100,6 +116,4 @@ const teamMemberSchema = new Schema(
   }
 );
 
-const TeamMember = model("TeamMember", teamMemberSchema);
-
-module.exports = TeamMember;
+module.exports = teamMemberSchema;

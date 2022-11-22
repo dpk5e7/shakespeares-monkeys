@@ -7,12 +7,12 @@ const resolvers = {
   Query: {
     // query that returns the current user, pulls the user's id from context
     me: async (parent, args, context) => {
-      return await User.findOne({ _id: context.user._id }).populate("team");
+      return await User.findOne({ _id: context.user._id });
     },
 
     // query that returns all users
     users: async () => {
-      return await User.find({}).populate("team");
+      return await User.find({});
     },
   },
 
@@ -30,7 +30,7 @@ const resolvers = {
       const user = await User.findByIdAndRemove(userId);
       if (user) {
         message = {
-          message: `${user.username} deleted successfully.`
+          message: `${user.username} deleted successfully.`,
         };
       }
       return message;

@@ -1,28 +1,36 @@
 const db = require("../config/connection");
-const mongoose = require("mongoose");
-const { User, TeamMember } = require("../models");
-//const { User } = require("../models");
+const { User } = require("../models");
 const userSeeds = require("./userSeeds.json");
 const teamMemberSeeds = require("./teamSeeds.json");
+const crypto = require("../utils/crypto");
+
+const cipherText = crypto.encrypt("Dan Kelly");
+
+console.log({
+  cipherText: cipherText,
+});
+
+const plainText = crypto.decrypt(cipherText);
+
+console.log({
+  plainText: plainText,
+});
 
 db.once("open", async () => {
   try {
-    await TeamMember.deleteMany({});
     await User.deleteMany({});
 
     await User.create(userSeeds);
 
     const users = await User.find({});
 
-    for (let user of users) {
-      for (let i = 0; i < 5; i++) {
-        const teamMember = await TeamMember.create(
-          teamMemberSeeds[Math.floor(Math.random() * teamMemberSeeds.length)]
-        );
-        
-        await user.team.push(teamMember);
-        await user.save();
+    let start = 0;
+    for (let u = 0; u < users.length; u++) {
+      for (let i = start; i < start + 4; i++) {
+        users[u].team.push(teamMemberSeeds[i]);
+        await users[u].save();
       }
+      start += 4;
     }
   } catch (err) {
     console.error(err);

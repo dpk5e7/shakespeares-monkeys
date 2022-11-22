@@ -1,50 +1,674 @@
 [
   {
-    "name": "Henry"
+    "name": "Henry",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Henry"
   },
   {
-    "name": "Ryan"
+    "name": "Ryan",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Ryan"
   },
   {
-    "name": "Adam"
+    "name": "Adam",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Adam"
   },
   {
-    "name": "Rob"
+    "name": "Rob",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Rob"
   },
   {
-    "name": "Annabelle"
+    "name": "Annabelle",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Annabelle"
   },
   {
-    "name": "Lucas"
+    "name": "Lucas",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Lucas"
   },
   {
-    "name": "Benjamin"
+    "name": "Benjamin",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Benjamin"
   },
   {
-    "name": "Colleen"
+    "name": "Colleen",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Colleen"
   },
   {
-    "name": "Aaron"
+    "name": "Aaron",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Aaron"
   },
   {
-    "name": "Mark"
+    "name": "Mark",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Mark"
   },
   {
-    "name": "Lorri"
+    "name": "Lorri",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Lorri"
   },
   {
-    "name": "Mike"
+    "name": "Mike",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Mike"
   },
   {
-    "name": "Theresa"
+    "name": "Theresa",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Theresa"
   },
   {
-    "name": "Mary"
+    "name": "Mary",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Mary"
   },
   {
-    "name": "Dan"
+    "name": "Dan",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Dan"
   },
   {
-    "name": "Kay"
+    "name": "Kay",
+    "contactInfo": {
+      "email": "h@k.com",
+      "phoneNumber": "111-222-3333",
+      "mailingAddress": "123 Main St, Anytown, CO 80123"
+    },
+    "emergencyPOC": {
+      "name": "Dan",
+      "phoneNumber": "111-222-3333",
+      "relationship": "Father"
+    },
+    "familySituation": "This person's family situation",
+    "importantDates": [
+      {
+        "importantDate": "11/11/2011",
+        "description": "Birthday"
+      },
+      {
+        "importantDate": "1/1/2021",
+        "description": "Anniversary"
+      }
+    ],
+    "experience": "This person's resume-ish.",
+    "skills": [
+      "Trombone",
+      "Art"
+    ],
+    "responsibilities": [
+      "Project 1",
+      "Project 2"
+    ],
+    "training": [
+      "C#",
+      "JavaScript"
+    ],
+    "personalInterests": [
+      "Skiing",
+      "Baseball"
+    ],
+    "notes": "Some notes about Kay"
   }
 ]

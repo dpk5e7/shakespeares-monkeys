@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
-const Team = require("./TeamMember");
-const SHA256 = require("crypto-js/sha256");
-const Base64 = require("crypto-js/enc-base64");
+const teamMemberSchema = require("./TeamMember")
+const crypto = require("../utils/crypto");
 
 const userSchema = new Schema(
   {
@@ -20,6 +19,7 @@ const userSchema = new Schema(
         /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
         "Must use a valid email address",
       ],
+      set: (v) => v.toLowerCase(),
     },
 
     password: {
@@ -45,12 +45,7 @@ const userSchema = new Schema(
       default: false,
     },
 
-    team: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "TeamMember",
-      },
-    ],
+    team: [teamMemberSchema],
   },
   // set this to use virtual below
   {
@@ -64,7 +59,7 @@ const userSchema = new Schema(
 // hash user password
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
-    this.password = Base64.stringify(SHA256(this.password));
+    this.password = crypto.hash(this.password);
   }
 
   next();
@@ -72,7 +67,7 @@ userSchema.pre("save", async function (next) {
 
 // custom method to compare and validate password for logging in
 userSchema.methods.isCorrectPassword = async function (password) {
-  const hash = Base64.stringify(SHA256(password));
+  const hash = crypto.hash(password);
   return hash === this.password;
 };
 

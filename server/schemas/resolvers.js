@@ -6,8 +6,8 @@ const { Kind } = require("graphql/language");
 const resolvers = {
   Query: {
     // query that returns the current user, pulls the user's id from context
-    me: async (parent, args, context) => {
-      return await User.findOne({ _id: context.user._id });
+    user: async (parent, { userId }, context) => {
+      return await User.findOne({ _id: userId });
     },
 
     // query that returns all users

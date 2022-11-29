@@ -53,7 +53,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/team/:teamMemberId" element={<TeamMember />} />
+            <Route path="/teammember" element={<TeamMember />} />
             <Route path="/export" element={<Export />} />
             <Route path="/userManagement" element={<UserManagement />} />
             <Route

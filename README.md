@@ -8,9 +8,11 @@ The code contained in this repository is a Team Builder. Designed to put "People
 in the office, this app will help managers and leaders of organizations 
 to keep persoanlized data points of their employees at hand. Need to remember an employee's
 birthday?  The Team Builder will make sure you never forget.  Want to celebrate your employees'
-anniversary with the company?  The Team Builder will make sure you you get that date correct.
-Want to check in with your employee about important life events?  The Team Builder will 
-help you stay on track and make your employees feel valued in the workplace.
+anniversary with the company?  The Team Builder will make sure you get that date correct. Need to
+quickly check who among your tram has the best skills for a specific project, team Builder has
+got you covered.  Team Builder will help you not only have the most useful data points available
+for your employees, but will make them feel more valued within your organization which makes
+Team Builder a truly "People First" app.
 ```
 ### [Deployment Link]()
 

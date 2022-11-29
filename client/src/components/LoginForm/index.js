@@ -1,12 +1,12 @@
 // see SignupForm.js for comments
 import React, { useState } from "react";
-import { Form, Button, Alert } from "semanticUIReact";
+import { Form, Button } from "semantic-ui-react";
 
-import Auth from "../utils/auth";
+import Auth from "../../utils/auth";
 
 // add apollo graphql
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
+import { LOGIN_USER } from "../../utils/mutations";
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: "", password: "" });
@@ -55,14 +55,14 @@ const LoginForm = () => {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert
+        {/* <Alert
           dismissible
           onClose={() => setShowAlert(false)}
           show={showAlert}
           variant="danger"
         >
           Something went wrong with your login credentials!
-        </Alert>
+        </Alert> */}
         <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control

@@ -5,7 +5,7 @@ import React from "react";
 //list of team is under user, send in user ID and pull objects for that team4
 // hard code id for now
 const Team = () => {
-  return <></>;
+  return <>Team</>;
 };
 
 export default Team;

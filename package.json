@@ -15,5 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.0.1",
+    "react-chartjs-2": "^5.0.1"
   }
 }

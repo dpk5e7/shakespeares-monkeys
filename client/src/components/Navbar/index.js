@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Modal } from "semantic-ui-react";
-import SignUpForm from "../SignupForm";
-import LoginForm from "../LoginForm";
+import { Menu } from "semantic-ui-react";
+// import SignUpForm from "../SignupForm";
+// import LoginForm from "../LoginForm";
+import Modal from "../Modal"
 
-import Auth from "../../utils/auth";
+// import Auth from "../../utils/auth";
 
-const AppNavbar = () => {
+const AppTabbar = () => {
   // set modal display state
-  const [showModal, setShowModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
 
-  return <>
-  <ul>
-    <li> <Link to="/">Dashboard</Link></li>
-      <li><Link to="/export">Export</Link></li>
-      <li><Link to="/team">Team</Link></li>
-      <li><Link to="/teammember">Team Member</Link></li>
-      <li><Link to="/userManagement">User Management</Link></li>
-  </ul></>;
+  return (
+    <>
+    <Menu>
+    <ul>
+      <li><Menu.Item><Link to="/">Dashboard</Link></Menu.Item></li>
+      <li><Menu.Item><Link to="/export">Export</Link></Menu.Item></li>
+      <li><Menu.Item><Link to="/team">Team</Link></Menu.Item></li>
+      <li><Menu.Item><Link to="/teammember">Team Member</Link></Menu.Item></li>
+      <li><Menu.Item><Link to="/userManagement">User Management</Link></Menu.Item></li>
+      {/* <li><Menu.Item><Link to={openModal} onClick={() => setOpenModal(true)}>Login/Sign Up</Link></Menu.Item></li> */}
+    </ul>
+    </Menu>
+
+    <Modal />
+    </>
+  );
+    
 };
 
-export default AppNavbar;
+export default AppTabbar;

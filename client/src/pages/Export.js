@@ -1,7 +1,7 @@
 import React from "react";
 
 const Export = () => {
-  return <></>;
+  return <>Export</>;
 };
 
 export default Export;

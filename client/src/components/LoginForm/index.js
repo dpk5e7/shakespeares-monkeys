@@ -43,7 +43,10 @@ const LoginForm = () => {
         const { token, user } = data.login;
 
         if (user.is_locked) {
-          throw new Error("This user account is locked.  Please contact the administrator.")
+          setErrorMessage(
+            "This user account is locked.  Please contact the administrator."
+          );
+          return;
         }
 
         Auth.login(token);

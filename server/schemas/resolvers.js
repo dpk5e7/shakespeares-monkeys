@@ -3,7 +3,7 @@ const { signToken } = require("../utils/auth");
 const { GraphQLScalarType } = require("graphql");
 const { Kind } = require("graphql/language");
 
-const TEST_USER_ID = "6386c8cb80efbd62f4beb09b";
+//const TEST_USER_ID = "6386c8cb80efbd62f4beb09b";
 
 const resolvers = {
   Query: {
@@ -20,9 +20,9 @@ const resolvers = {
     // query that returns all team members
     team: async (parent, args, context) => {
       // Check this before deploy!!!!!!
-      const user = await User.findOne({ _id: TEST_USER_ID });
+      //const user = await User.findOne({ _id: TEST_USER_ID });
 
-      //const user = await User.findOne({ _id: context.user._id });
+      const user = await User.findOne({ _id: context.user._id });
       return user.team;
     },
   },
@@ -50,9 +50,9 @@ const resolvers = {
       let message = "No such user exists";
 
       // Check this before deploy!!!!!!
-      const user = await User.findOne({ _id: TEST_USER_ID });
+      //const user = await User.findOne({ _id: TEST_USER_ID });
 
-      //const user = await User.findOne({ _id: context.user._id });
+      const user = await User.findOne({ _id: context.user._id });
 
       if (user) {
         user.team = user.team.filter((teamMember) => teamMember._id != id);

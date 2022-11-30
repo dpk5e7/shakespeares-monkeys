@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Checkbox, Message } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
@@ -8,128 +8,97 @@ import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 
 const SignupForm = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  // set state for form validation
-  const [validated] = useState(false);
   // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [inputs, setInputs] = useState({});
+
+  const [checked, setChecked] = useState(false);
+  const handleCheck = () => setChecked(!checked);
 
   // add addUser mutation
   const [addUser] = useMutation(ADD_USER);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    if (inputs.username && inputs.email && inputs.password && checked) {
+      try {
+        // call addUser mutation
+        const { data } = await addUser({
+          variables: { ...inputs },
+        });
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+        const { token, user } = data.addUser;
 
-    try {
-      // call addUser mutation
-      const { data } = await addUser({
-        variables: { ...userFormData },
+        Auth.login(token);
+      } catch (err) {
+        setErrorMessage(err.Message);
+      }
+
+      setInputs({
+        username: "",
+        email: "",
+        password: "",
+        conditions: false,
       });
-
-      const { token, user } = data.addUser;
-
-      console.log(user);
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
+    }    
   };
 
   return (
     <>
-      {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
-        {/* <Alert
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          Something went wrong with your signup!
-        </Alert> */}
-
-        <Form.Group>
-          <Form.Label htmlFor="username">Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Your username"
+      <Form onSubmit={handleFormSubmit}>
+        <Form.Field required>
+          <label>User Name</label>
+          <input
             name="username"
-            onChange={handleInputChange}
-            value={userFormData.username}
-            required
+            placeholder="User Name"
+            value={inputs.username || ""}
+            onChange={handleChange}
           />
-          <Form.Control.Feedback type="invalid">
-            Username is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="email">Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Your email address"
+        </Form.Field>
+        <Form.Field required>
+          <label>Email Address</label>
+          <input
             name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
+            placeholder="Email Address"
+            value={inputs.email || ""}
+            onChange={handleChange}
           />
-          <Form.Control.Feedback type="invalid">
-            Email is required!
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="password">Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Your password"
+        </Form.Field>
+        <Form.Field required>
+          <label>Password</label>
+          <input
             name="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
+            placeholder="Password"
+            type="password"
+            value={inputs.password || ""}
+            onChange={handleChange}
           />
-          <Form.Control.Feedback type="invalid">
-            Password is required!
-          </Form.Control.Feedback>
-        </Form.Group>
+        </Form.Field>
+        <Form.Field>
+          <Checkbox
+            onClick={handleCheck}
+            checked={checked}
+            label="I agree to the Terms and Conditions"
+          />
+        </Form.Field>
         <Button
-          disabled={
-            !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
-            )
-          }
           type="submit"
-          variant="success"
+           disabled={!(inputs.username && inputs.email && inputs.password && checked)}
         >
           Submit
         </Button>
+        {errorMessage && (
+          <Message negative>
+            <Message.Header>{errorMessage}</Message.Header>
+          </Message>
+        )}
       </Form>
     </>
   );

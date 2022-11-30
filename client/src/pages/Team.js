@@ -5,10 +5,6 @@ import { DELETE_TEAM_MEMBER } from "../utils/mutations";
 import TeamMemberCard from "../components/TeamMemberCard";
 import { Card, Button, Icon } from "semantic-ui-react";
 
-
-//builds query that will pull 
-//list of team is under user, send in user ID and pull objects for that team4
-// hard code id for now
 const Team = () => {
   const [deleteTeamMember] = useMutation(DELETE_TEAM_MEMBER);
 

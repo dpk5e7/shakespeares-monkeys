@@ -16,6 +16,7 @@ import Team from "./pages/Team";
 import TeamMember from "./pages/TeamMember";
 import Export from "./pages/Export";
 import UserManagement from "./pages/UserManagement";
+import LoginForm from "./components/LoginForm";
 
 // import components
 import Navbar from "./components/Navbar";
@@ -56,6 +57,7 @@ function App() {
             <Route path="/teammember" element={<TeamMember />} />
             <Route path="/export" element={<Export />} />
             <Route path="/userManagement" element={<UserManagement />} />
+            <Route path="/login" element={<LoginForm />} />
             <Route
               path="*"
               element={<h1 className="display-2">Wrong page!</h1>}

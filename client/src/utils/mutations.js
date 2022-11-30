@@ -43,6 +43,8 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
+        is_admin
+        is_locked
       }
     }
   }
@@ -55,6 +57,8 @@ export const TOGGLE_ADMIN = gql`
       user {
         _id
         username
+        is_admin
+        is_locked
       }
     }
   }
@@ -67,6 +71,8 @@ export const TOGGLE_LOCKED = gql`
       user {
         _id
         username
+        is_admin
+        is_locked
       }
     }
   }

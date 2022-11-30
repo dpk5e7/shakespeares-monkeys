@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Form, Button, Checkbox, Message } from "semantic-ui-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Button, Message } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
 // add apollo graphql
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
+
+import { useUserContext } from "../../utils/UserContext";
+import { LOGIN } from "../../utils/actions";
 
 const LoginForm = () => {
   // set state for alert
@@ -15,6 +19,11 @@ const LoginForm = () => {
 
   // add loginUser mutation
   const [loginUser] = useMutation(LOGIN_USER);
+
+  // add global state
+  const [state, dispatch] = useUserContext();
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -33,7 +42,17 @@ const LoginForm = () => {
 
         const { token, user } = data.login;
 
+        if (user.is_locked) {
+          throw new Error("This user account is locked.  Please contact the administrator.")
+        }
+
         Auth.login(token);
+
+        // set global state
+        dispatch({
+          type: LOGIN,
+          user: { _id: user._id, username: user.username, is_admin: user.is_admin, is_locked: user.is_locked },
+        });
       } catch (err) {
         setErrorMessage(err.message);
       }
@@ -42,6 +61,8 @@ const LoginForm = () => {
         email: "",
         password: "",
       });
+
+      navigate("/");
     }
   };
 

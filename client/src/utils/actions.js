@@ -1,1 +1,2 @@
-export const CHANGE_SORT = "CHANGE_SORT";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";

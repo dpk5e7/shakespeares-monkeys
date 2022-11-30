@@ -18,9 +18,15 @@ import EditTeamMember from "./pages/EditTeamMember";
 import Export from "./pages/Export";
 import UserManagement from "./pages/UserManagement";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 // import components
 import Navbar from "./components/Navbar";
+import RequireAuth from "./components/RequireAuth";
+import RequireAdmin from "./components/RequireAdmin";
+
+// import Global State User Context
+import { UserProvider } from "./utils/UserContext";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -51,20 +57,65 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/teamMember" element={<TeamMember />} />
-            <Route path="/editTeamMember/:id" element={<EditTeamMember />} />
-            <Route path="/export" element={<Export />} />
-            <Route path="/userManagement" element={<UserManagement />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="*"
-              element={<h1 className="display-2">Wrong page!</h1>}
-            />
-          </Routes>
+          <UserProvider>
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <RequireAuth>
+                    <Dashboard />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/team"
+                element={
+                  <RequireAuth>
+                    <Team />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/teamMember"
+                element={
+                  <RequireAuth>
+                    <TeamMember />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/editTeamMember/:id"
+                element={
+                  <RequireAuth>
+                    <EditTeamMember />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/export"
+                element={
+                  <RequireAuth>
+                    <Export />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/userManagement"
+                element={
+                  <RequireAdmin>
+                    <UserManagement />
+                  </RequireAdmin>
+                }
+              />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="*"
+                element={<h1 className="display-2">Wrong page!</h1>}
+              />
+            </Routes>
+          </UserProvider>
         </>
       </Router>
     </ApolloProvider>

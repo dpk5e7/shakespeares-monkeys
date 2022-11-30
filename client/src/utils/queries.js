@@ -23,3 +23,33 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const GET_MY_TEAM = gql`
+  query team {
+    team {
+      _id
+      name
+      contactInfo {
+        email
+        phoneNumber
+        mailingAddress
+      }
+      emergencyPOC {
+        name
+        phoneNumber
+        relationship
+      }
+      familySituation
+      importantDates {
+        importantDate
+        description
+      }
+      experience
+      skills
+      responsibilities
+      training
+      personalInterests
+      notes
+    }
+  }
+`;

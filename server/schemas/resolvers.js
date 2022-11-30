@@ -3,16 +3,27 @@ const { signToken } = require("../utils/auth");
 const { GraphQLScalarType } = require("graphql");
 const { Kind } = require("graphql/language");
 
+const TEST_USER_ID = "6386c8cb80efbd62f4beb09b";
+
 const resolvers = {
   Query: {
     // query that returns the current user, pulls the user's id from context
-    user: async (parent, { userId }, context) => {
-      return await User.findOne({ _id: userId });
+    user: async (parent, args, context) => {
+      return await User.findOne({ _id: context.user._id });
     },
 
     // query that returns all users
     users: async () => {
       return await User.find({});
+    },
+
+    // query that returns all team members
+    team: async (parent, args, context) => {
+      // Check this before deploy!!!!!!
+      const user = await User.findOne({ _id: TEST_USER_ID });
+
+      //const user = await User.findOne({ _id: context.user._id });
+      return user.team;
     },
   },
 
@@ -30,6 +41,23 @@ const resolvers = {
       const user = await User.findByIdAndRemove(userId);
       if (user) {
         message = `${user.username} deleted successfully.`;
+      }
+      return { message, user };
+    },
+
+    // deleteUser mutation that returns a success/fail message
+    deleteTeamMember: async (parent, { id }) => {
+      let message = "No such user exists";
+
+      // Check this before deploy!!!!!!
+      const user = await User.findOne({ _id: TEST_USER_ID });
+
+      //const user = await User.findOne({ _id: context.user._id });
+
+      if (user) {
+        user.team = user.team.filter((teamMember) => teamMember._id != id);
+        user.save();
+        message = `${id} deleted successfully.`;
       }
       return { message, user };
     },

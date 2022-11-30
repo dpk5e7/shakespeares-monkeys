@@ -57,10 +57,19 @@ const typeDefs = gql`
     user: User
   }
 
+  type ChartData {
+    labels: [String!]!
+    data: [Int!]!
+  }
+
   type Query {
     user: User!
     users: [User]!
     team: [TeamMember]!
+    teamSkills: ChartData!
+    teamResponsibilities: ChartData!
+    teamPersonalInterests: ChartData!
+    teamUpcomingImportantDates: [ImportantDate]!
   }
 
   type Mutation {

@@ -1,9 +1,14 @@
-const { Schema, model } = require("mongoose");
+const { Schema, Types, model } = require("mongoose");
 const crypto = require("../utils/crypto");
 
 // Schema to create a team member /////////////////////////////
 const teamMemberSchema = new Schema(
   {
+    _id: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+
     name: {
       type: String,
       required: true,
@@ -113,6 +118,7 @@ const teamMemberSchema = new Schema(
       virtuals: true,
       getters: true,
     },
+    id: false,
   }
 );
 

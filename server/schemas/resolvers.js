@@ -3,8 +3,6 @@ const { signToken } = require("../utils/auth");
 const { GraphQLScalarType } = require("graphql");
 const { Kind } = require("graphql/language");
 
-//const TEST_USER_ID = "6386c8cb80efbd62f4beb09b";
-
 const resolvers = {
   Query: {
     // query that returns the current user, pulls the user's id from context
@@ -19,11 +17,122 @@ const resolvers = {
 
     // query that returns all team members
     team: async (parent, args, context) => {
-      // Check this before deploy!!!!!!
-      //const user = await User.findOne({ _id: TEST_USER_ID });
-
       const user = await User.findOne({ _id: context.user._id });
       return user.team;
+    },
+
+    // query that returns team skills
+    teamSkills: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id });
+      let labels = [];
+      let data = [];
+      for (let teamMember of user.team) {
+        labels = labels.concat(teamMember.skills);
+      }
+      labels = [...new Set(labels)];
+
+      for (let i = 0; i < labels.length; i++) {
+        let count = 0;
+        for (let teamMember of user.team) {
+          for (let skill of teamMember.skills) {
+            if (skill === labels[i]) {
+              count++;
+            }
+          }
+        }
+        data.push(count);
+        count = 0;
+      }
+
+      return { labels, data };
+    },
+
+    // query that returns team responsibilities
+    teamResponsibilities: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id });
+      let labels = [];
+      let data = [];
+      for (let teamMember of user.team) {
+        labels = labels.concat(teamMember.responsibilities);
+      }
+      labels = [...new Set(labels)];
+
+      for (let i = 0; i < labels.length; i++) {
+        let count = 0;
+        for (let teamMember of user.team) {
+          for (let skill of teamMember.responsibilities) {
+            if (skill === labels[i]) {
+              count++;
+            }
+          }
+        }
+        data.push(count);
+        count = 0;
+      }
+
+      return { labels, data };
+    },
+
+    // query that returns team personal interests
+    teamPersonalInterests: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id });
+      let labels = [];
+      let data = [];
+      for (let teamMember of user.team) {
+        labels = labels.concat(teamMember.personalInterests);
+      }
+      labels = [...new Set(labels)];
+
+      for (let i = 0; i < labels.length; i++) {
+        let count = 0;
+        for (let teamMember of user.team) {
+          for (let skill of teamMember.personalInterests) {
+            if (skill === labels[i]) {
+              count++;
+            }
+          }
+        }
+        data.push(count);
+        count = 0;
+      }
+
+      return { labels, data };
+    },
+
+    // query that returns upcoming team important dates
+    teamUpcomingImportantDates: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id });
+      let teamUpcomingImportantDates = [];
+      for (let teamMember of user.team) {
+        for (let impDate of teamMember.importantDates) {
+          let currentYear = new Date().getFullYear();
+          let dateThisYear = new Date(impDate.importantDate);
+          dateThisYear.setFullYear(currentYear);
+          if (dateThisYear < Date.now()) {
+            dateThisYear.setFullYear(currentYear + 1);
+          }
+
+          let limitDate = new Date();
+          limitDate.setMonth(limitDate.getMonth() + 3);
+
+          // Only include dates less than 3 months away
+          if (dateThisYear < limitDate) {
+            // Concatenate the team member's name to the description
+            let dtImportant = {
+              description: `${teamMember.name}'s ${impDate.description}`,
+              importantDate: dateThisYear.toLocaleDateString(),
+            };
+            teamUpcomingImportantDates.push(dtImportant);
+          }
+        }
+      }
+
+      // Sort so the nearest dates are first
+      teamUpcomingImportantDates.sort((date1, date2) =>
+        date1.importantDate > date2.importantDate ? 1 : -1
+      );
+
+      return teamUpcomingImportantDates;
     },
   },
 
@@ -48,9 +157,6 @@ const resolvers = {
     // deleteUser mutation that returns a success/fail message
     deleteTeamMember: async (parent, { id }) => {
       let message = "No such user exists";
-
-      // Check this before deploy!!!!!!
-      //const user = await User.findOne({ _id: TEST_USER_ID });
 
       const user = await User.findOne({ _id: context.user._id });
 

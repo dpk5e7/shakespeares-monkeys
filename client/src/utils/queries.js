@@ -53,3 +53,39 @@ export const GET_MY_TEAM = gql`
     }
   }
 `;
+
+export const GET_TEAM_SKILLS = gql`
+  query teamSkills {
+    teamSkills {
+      labels
+      data
+    }
+  }
+`;
+
+export const GET_TEAM_RESPONSIBILITIES = gql`
+  query teamResponsibilities {
+    teamResponsibilities {
+      labels
+      data
+    }
+  }
+`;
+
+export const GET_TEAM_PERSONAL_INTERESTS = gql`
+  query teamPersonalInterests {
+    teamPersonalInterests {
+      labels
+      data
+    }
+  }
+`;
+
+export const GET_TEAM_UPCOMING_IMPORTANT_DATES = gql`
+  query teamUpcomingImportantDates {
+    teamUpcomingImportantDates {
+      importantDate
+      description
+    }
+  }
+`;

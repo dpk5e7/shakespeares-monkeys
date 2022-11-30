@@ -1,7 +1,7 @@
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Modal, Form, Checkbox } from 'semantic-ui-react'
 import { useState } from 'react'
 
-function ModalExampleModal() {
+function LoginModal() {
   const [open, setOpen] = useState(false)
 
   return (
@@ -9,34 +9,47 @@ function ModalExampleModal() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button>Show Modal</Button>}
+      trigger={<Button>Login</Button>}
     >
-      <Modal.Header>Select a Photo</Modal.Header>
-      <Modal.Content image>
-        <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
-        <Modal.Description>
-          <Header>Default Profile Image</Header>
-          <p>
-            We've found the following gravatar image associated with your e-mail
-            address.
-          </p>
-          <p>Is it okay to use this photo?</p>
-        </Modal.Description>
+      <Modal.Header>Login</Modal.Header>
+      <Modal.Content>
+        {/* <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped /> */}
+        {/* <Modal.Description> */}
+          {/* <Header>Default Profile Image</Header> */}
+          <Form>
+            <Form.Field>
+              <label>Username</label>
+              <input placeholder="Enter username" />
+            </Form.Field>
+            <Form.Field>
+            <label>Password</label>
+              <input placeholder="Enter password" />
+            </Form.Field>
+            <Form.Field>
+              <Checkbox label="I understand that I am entering a confidential database" />
+            </Form.Field>
+          </Form>
+        {/* </Modal.Description> */}
       </Modal.Content>
       <Modal.Actions>
-        <Button color='black' onClick={() => setOpen(false)}>
-          Nope
+        <Button 
+        content="Create New Account"
+        position="left"
+        display="left"
+        background="red"
+        negative >
+
         </Button>
         <Button
-          content="Yep, that's me"
+          content="Login"
           labelPosition='right'
           icon='checkmark'
           onClick={() => setOpen(false)}
           positive
         />
-      </Modal.Actions>
+       </Modal.Actions>
     </Modal>
   )
 }
 
-export default ModalExampleModal
+export default LoginModal

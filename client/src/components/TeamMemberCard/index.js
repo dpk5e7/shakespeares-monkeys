@@ -1,15 +1,20 @@
 import { Card, Button, Icon } from "semantic-ui-react";
 
 // Component to display individual team members on the team page
-export default function TeamMemberCard({ id, name, email, phoneNumber, deleteTeamMember }) {
-
-  const editLink = `/TeamMember/${id}`;
+export default function TeamMemberCard({
+  id,
+  name,
+  email,
+  phoneNumber,
+  deleteTeamMember,
+}) {
+  const editLink = `/editTeamMember/${id}`;
 
   return (
     <Card key={id}>
       <Card.Content>
         <Card.Header>{name}</Card.Header>
-        <Card.Meta>{id}</Card.Meta>
+        {/* <Card.Meta>{id}</Card.Meta> */}
         <Card.Description>Email: {email}</Card.Description>
         <Card.Description>Phone Number: {phoneNumber}</Card.Description>
       </Card.Content>

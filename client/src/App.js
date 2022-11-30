@@ -14,9 +14,10 @@ import { setContext } from "@apollo/client/link/context";
 import Dashboard from "./pages/Dashboard";
 import Team from "./pages/Team";
 import TeamMember from "./pages/TeamMember";
+import EditTeamMember from "./pages/EditTeamMember";
 import Export from "./pages/Export";
 import UserManagement from "./pages/UserManagement";
-import LoginForm from "./components/LoginForm";
+import Signup from "./pages/Signup";
 
 // import components
 import Navbar from "./components/Navbar";
@@ -54,10 +55,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/team" element={<Team />} />
-            <Route path="/teammember" element={<TeamMember />} />
+            <Route path="/teamMember" element={<TeamMember />} />
+            <Route path="/editTeamMember/:id" element={<EditTeamMember />} />
             <Route path="/export" element={<Export />} />
             <Route path="/userManagement" element={<UserManagement />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<Signup />} />
             <Route
               path="*"
               element={<h1 className="display-2">Wrong page!</h1>}

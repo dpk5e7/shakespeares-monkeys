@@ -58,13 +58,15 @@ const typeDefs = gql`
   }
 
   type Query {
-    user(userId: String!): User!
+    user: User!
     users: [User]!
+    team: [TeamMember]!
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     deleteUser(userId: ID!): Message
+    deleteTeamMember(id: ID!): Message
     login(email: String!, password: String!): Auth
     toggleAdmin(userId: ID!): Message
     toggleLocked(userId: ID!): Message

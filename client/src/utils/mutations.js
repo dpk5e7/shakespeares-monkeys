@@ -24,6 +24,17 @@ export const DELETE_USER = gql`
   }
 `;
 
+export const DELETE_TEAM_MEMBER = gql`
+  mutation deleteTeamMember($id: ID!) {
+    deleteTeamMember(id: $id) {
+      message
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {

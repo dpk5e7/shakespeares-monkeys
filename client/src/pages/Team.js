@@ -3,7 +3,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_MY_TEAM } from "../utils/queries";
 import { DELETE_TEAM_MEMBER } from "../utils/mutations";
 import TeamMemberCard from "../components/TeamMemberCard";
-import { Card } from "semantic-ui-react";
+import { Card, Button, Icon } from "semantic-ui-react";
 
 const Team = () => {
   const [deleteTeamMember] = useMutation(DELETE_TEAM_MEMBER);
@@ -23,6 +23,10 @@ const Team = () => {
   return (
     <>
       <h2>My Team</h2>
+      <Button compact positive icon as="a" href="/TeamMember">
+        <Icon name="add" />
+        New Team Member
+      </Button>
       <Card.Group>
         {teamData.map((teamMember) => (
           <TeamMemberCard

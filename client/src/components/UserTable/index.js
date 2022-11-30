@@ -1,56 +1,67 @@
 import React, { useState } from "react";
-import { Table, Form, Icon } from "semantic-ui-react";
+import { Table, Form, Icon, Message } from "semantic-ui-react";
 
 // add apollo graphql
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { GET_USERS } from "../../utils/queries";
+import {
+  DELETE_USER,
+  TOGGLE_ADMIN,
+  TOGGLE_LOCKED,
+} from "../../utils/mutations";
 
 import TablePagination from "../TablePagination";
-
-import { reducer as sortReducer } from "../../utils/sortReducer";
 
 function formatDate(seconds) {
   const returnDate = new Date(seconds);
   return returnDate.toLocaleString();
 }
 
-function deleteUser(userId) {
-  alert(`Delete ${userId}`);
-  // need to create a mutation to delete the user
-}
-
-function toggleLock(userId) {
-  alert(`Lock ${userId}`);
-  // need to create a mutation to toggle the locked out status of the user
-}
-
-function toggleAdmin(userId) {
-  alert(`Admin ${userId}`);
-  // need to create a mutation to toggle the admin status of the user
-}
-
 const UserTable = () => {
-  const { loading, error, data } = useQuery(GET_USERS);
+  const [deleteUser] = useMutation(DELETE_USER);
+  const [toggleAdmin] = useMutation(TOGGLE_ADMIN);
+  const [toggleLocked] = useMutation(TOGGLE_LOCKED);
 
+  const { loading, error, data, refetch } = useQuery(GET_USERS);
   const userData = data?.users || [];
 
-  const [state, dispatch] = React.useReducer(sortReducer, {
-    column: "last_login",
-    tableData: userData,
-    direction: "descending",
-  });
-  const { column, tableData, direction } = state;
-
+  const [messageToUser, setMessageToUser] = useState(""); // State variable to take care of the text area
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(10);
 
   // Get current posts
   const indexOfLast = currentPage * rowsPerPage;
   const indexOfFirst = indexOfLast - rowsPerPage;
-  const currentData = tableData?.slice(indexOfFirst, indexOfLast) || [];
+  const currentData = userData?.slice(indexOfFirst, indexOfLast) || [];
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleDeleteUser = async (userId, userName) => {
+    if (window.confirm(`Are you sure you want to delete ${userName}?`)) {
+      const data = await deleteUser({
+        variables: { userId },
+      });
+      refetch();
+      setMessageToUser(data.data.deleteUser.message);
+    }
+  };
+
+  const handleToggleAdmin = async (userId) => {
+    const data = await toggleAdmin({
+      variables: { userId },
+    });
+    refetch();
+    setMessageToUser(data.data.toggleAdmin.message);
+  };
+
+  const handleToggleLocked = async (userId) => {
+    const data = await toggleLocked({
+      variables: { userId },
+    });
+    refetch();
+    setMessageToUser(data.data.toggleLocked.message);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -69,48 +80,16 @@ const UserTable = () => {
         collapsing
         compact
         celled
+        className="attached fluid segment"
         color="orange"
       >
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell
-              sorted={column === "username" ? direction : null}
-              onClick={() =>
-                dispatch({ type: "CHANGE_SORT", column: "username" })
-              }
-            >
-              User Name
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "email" ? direction : null}
-              onClick={() => dispatch({ type: "CHANGE_SORT", column: "email" })}
-            >
-              Email
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "last_login" ? direction : null}
-              onClick={() =>
-                dispatch({ type: "CHANGE_SORT", column: "last_login" })
-              }
-            >
-              Last Login
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "is_admin" ? direction : null}
-              onClick={() =>
-                dispatch({ type: "CHANGE_SORT", column: "is_admin" })
-              }
-            >
-              Admin
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "is_locked" ? direction : null}
-              onClick={() =>
-                dispatch({ type: "CHANGE_SORT", column: "is_locked" })
-              }
-            >
-              Locked
-            </Table.HeaderCell>
+            <Table.HeaderCell>User Name</Table.HeaderCell>
+            <Table.HeaderCell>Email</Table.HeaderCell>
+            <Table.HeaderCell>Last Login</Table.HeaderCell>
+            <Table.HeaderCell>Admin</Table.HeaderCell>
+            <Table.HeaderCell>Locked</Table.HeaderCell>
             <Table.HeaderCell>Delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -126,13 +105,13 @@ const UserTable = () => {
                   <Table.Cell textAlign="center">
                     <Form.Checkbox
                       checked={is_admin}
-                      onClick={() => toggleAdmin(_id)}
+                      onClick={() => handleToggleAdmin(_id)}
                     />
                   </Table.Cell>
                   <Table.Cell textAlign="center">
                     <Form.Checkbox
                       checked={is_locked}
-                      onClick={() => toggleLock(_id)}
+                      onClick={() => handleToggleLocked(_id)}
                     />
                   </Table.Cell>
                   <Table.Cell textAlign="center">
@@ -140,7 +119,7 @@ const UserTable = () => {
                       compact
                       negative
                       icon
-                      onClick={() => deleteUser(_id)}
+                      onClick={() => handleDeleteUser(_id, username)}
                     >
                       <Icon name="trash alternate outline" />
                     </Form.Button>
@@ -157,13 +136,18 @@ const UserTable = () => {
               <TablePagination
                 currentPage={currentPage}
                 rowsPerPage={rowsPerPage}
-                totalRows={tableData?.length || 0}
+                totalRows={userData?.length || 0}
                 paginate={paginate}
               />
             </Table.HeaderCell>
           </Table.Row>
         </Table.Footer>
       </Table>
+      {messageToUser && (
+        <Message info>
+          <Message.Header>{messageToUser}</Message.Header>
+        </Message>
+      )}
     </>
   );
 };

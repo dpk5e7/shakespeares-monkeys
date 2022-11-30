@@ -26,14 +26,12 @@ const resolvers = {
 
     // deleteUser mutation that returns a success/fail message
     deleteUser: async (parent, { userId }) => {
-      let message = { message: "No such user exists" };
+      let message = "No such user exists";
       const user = await User.findByIdAndRemove(userId);
       if (user) {
-        message = {
-          message: `${user.username} deleted successfully.`,
-        };
+        message = `${user.username} deleted successfully.`;
       }
-      return message;
+      return { message, user };
     },
 
     // login mutation that returns an Auth object
@@ -58,6 +56,42 @@ const resolvers = {
       await user.save();
 
       return { token, user };
+    },
+
+    // toggleAdmin mutation that returns a success/fail message
+    toggleAdmin: async (parent, { userId }) => {
+      let message = "No such user exists";
+      const user = await User.findById(userId);
+      if (user) {
+        try {
+          user.is_admin = !user.is_admin;
+          user.save();
+          message = user.is_admin
+            ? `${user.username} is now an administrator.`
+            : `${user.username} is no longer an administrator.`;
+        } catch {
+          message = `${user.username} update failed.`;
+        }
+      }
+      return { message, user };
+    },
+
+    // toggleLocked mutation that returns a success/fail message
+    toggleLocked: async (parent, { userId }) => {
+      let message = "No such user exists";
+      const user = await User.findById(userId);
+      if (user) {
+        try {
+          user.is_locked = !user.is_locked;
+          user.save();
+          message = user.is_locked
+            ? `${user.username} is now locked.`
+            : `${user.username} is no longer locked.`;
+        } catch {
+          message = `${user.username} update failed.`;
+        }
+      }
+      return { message, user };
     },
   },
 

@@ -54,6 +54,7 @@ const typeDefs = gql`
 
   type Message {
     message: String!
+    user: User
   }
 
   type Query {
@@ -63,8 +64,10 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    deleteUser(userId: String!): Message
+    deleteUser(userId: ID!): Message
     login(email: String!, password: String!): Auth
+    toggleAdmin(userId: ID!): Message
+    toggleLocked(userId: ID!): Message
   }
 `;
 

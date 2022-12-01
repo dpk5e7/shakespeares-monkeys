@@ -1,4 +1,6 @@
 import { Table, Icon } from "semantic-ui-react";
+import ExportDates from "../ExportDates"
+import { GET_ONE_TEAM_MEMBER } from "../../utils/queries";
 
 export default function TeamMemberTable({
     id,
@@ -10,7 +12,10 @@ export default function TeamMemberTable({
     emergencyPOCRelationship,
     experience,
     skills,
-    responsibilities
+    responsibilities,
+    training,
+    importantDates,
+    importantDatesDescription,
 }) {
 
     return (
@@ -22,7 +27,11 @@ export default function TeamMemberTable({
             </Table.Header>
             <Table.Body>
                 <Table.Row>
-                    <Table.Cell collapsing>
+                    <Table.Cell colSpan="3" collapsing><h3>Contact Info </h3>
+                    </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell>
                         <h5><Icon name="mail" /> Email: </h5>
                         {email}
                     </Table.Cell>
@@ -31,14 +40,19 @@ export default function TeamMemberTable({
                         {phoneNumber}
                     </Table.Cell>
                     <Table.Cell collapsing>
-                        <h5><Icon name="emergency" />EmergencyPOC: </h5>
+                        <h5><Icon name="emergency" /> EmergencyPOC: </h5>
                         Name: {emergencyPOCName} <br></br>
                         Relationship: {emergencyPOCRelationship}<br></br>
                         Phone Number: {emergencyPOCPhoneNumber}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                    <Table.Cell colSpan="3" collapsing><h3>Experience {experience}</h3>
+                <Table.Cell colSpan="3" collapsing><h3>Important Upcoming Dates </h3>
+                <ExportDates />
+                </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="3" collapsing><h3>Experience </h3>
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
@@ -46,23 +60,27 @@ export default function TeamMemberTable({
                         <Icon name="calendar outline" />Number of Years at Company: { }
                     </Table.Cell>
                     <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" /> Title:
+                        <Icon name="calendar outline" /> Training: <br></br>
+                        {training}
                     </Table.Cell>
                     <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" /> Past Employment:
+                        <Icon name="calendar outline" /> Past Employment: <br></br>
+                        {experience}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
                     <Table.Cell colSpan="3" collapsing>
-                        <h3>Skills {skills}</h3>
+                        <h3>Skills </h3>
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
                     <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 1
+                        <Icon name="cog" /> Skill 1: <br></br>
+                        {skills}
                     </Table.Cell>
                     <Table.Cell colSpan="1" collapsing>
                         <Icon name="cog" /> Skill 2
+
                     </Table.Cell>
                     <Table.Cell colSpan="1" collapsing>
                         <Icon name="cog" /> Skill 3
@@ -70,12 +88,13 @@ export default function TeamMemberTable({
                 </Table.Row>
                 <Table.Row>
                     <Table.Cell colSpan="3" collapsing backgroundColor="lightblue">
-                        <h3>Responsbilities {responsibilities}</h3>
+                        <h3>Responsbilities </h3>
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
                     <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 1
+                        <Icon name="cog" /> Responsibility 1: <br></br>
+                        {responsibilities}
                     </Table.Cell>
                     <Table.Cell colSpan="1" collapsing>
                         <Icon name="cog" /> Responsibility 2

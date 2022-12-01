@@ -1,7 +1,8 @@
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_MY_TEAM } from "../utils/queries";
 import TeamMemberTable from "../components/TeamMemberTable";
 import { Table } from "semantic-ui-react";
+import UpcomingDates from "../components/UpcomingDates";
 
 
 const Export = () => {
@@ -21,8 +22,17 @@ const Export = () => {
         emergencyPOCName={teamMember.emergencyPOC.name}
         emergencyPOCRelationship={teamMember.emergencyPOC.relationship}
         emergencyPOCPhoneNumber={teamMember.emergencyPOC.phoneNumber}
+        skills={teamMember.skills}
+        responsibilities={teamMember.responsibilities}
+        experience={teamMember.experience}
+        training={teamMember.training}
+        mailingAddress={teamMember.contactInfo.mailingAddress}
+        familySituation={teamMember.familySituation}
+        importantDates={teamMember.importantDates.importantDate}
+        importantDatesDescription={teamMember.importantDates.description}
         />
       ))}
+      
     </Table>
     </>
   )

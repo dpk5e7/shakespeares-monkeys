@@ -66,6 +66,7 @@ const typeDefs = gql`
     user: User!
     users: [User]!
     team: [TeamMember]!
+    oneTeamMember(oneTeamMemberId: ID!): TeamMember!
     teamSkills: ChartData!
     teamResponsibilities: ChartData!
     teamPersonalInterests: ChartData!

@@ -89,3 +89,33 @@ export const GET_TEAM_UPCOMING_IMPORTANT_DATES = gql`
     }
   }
 `;
+
+export const GET_ONE_TEAM_MEMBER = gql`
+  query getOneTeamMember($oneTeamMemberId: ID!) {
+    oneTeamMember(oneTeamMemberId: $oneTeamMemberId) {
+      _id
+      name
+      contactInfo {
+        email
+        phoneNumber
+        mailingAddress
+      }
+      emergencyPOC {
+        name
+        phoneNumber
+        relationship
+      }
+      familySituation
+      importantDates {
+        importantDate
+        description
+      }
+      experience
+      skills
+      responsibilities
+      training
+      personalInterests
+      notes
+    }
+  }
+`;

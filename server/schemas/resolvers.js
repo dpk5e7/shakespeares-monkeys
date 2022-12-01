@@ -25,7 +25,7 @@ const resolvers = {
     oneTeamMember: async (parent, { oneTeamMemberId }, context) => {
       // const user = await User.findOne({ _id: context.user._id });
       const user = await User.findOne({ _id: "6387bd31d7a371907fa7797d" });
-      const oneTeamMember = user.team.filter((otm) => otm._id == oneTeamMemberId
+      const oneTeamMember = user.team.find((otm) => otm._id == oneTeamMemberId
       );
       return oneTeamMember;
     },

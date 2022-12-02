@@ -1,6 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// printing Export code
+import ReactToPrint from "react-to-print";
+import { useRef } from "react";
+
+
 // import apollo graphql
 import {
   ApolloClient,
@@ -19,6 +24,9 @@ import Export from "./pages/Export";
 import UserManagement from "./pages/UserManagement";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+
+// MOCK IMPORT TO TEST SINGLE TEAM MEMBER ///////////////////
+import ExportSingleMember from "./pages/ExportSingleMember"
 
 // import components
 import Navbar from "./components/Navbar";
@@ -53,7 +61,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
+function App () {
+  // for prininting
+  const componentRef = useRef();
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -98,10 +109,28 @@ function App() {
                   path="/export"
                   element={
                     <RequireAuth>
-                      <Export />
+                      <ReactToPrint
+                        // trigger={() => <button>Print</button>}
+                        trigger={() => {
+                          return <button>Print</button>;
+                        }}
+                        content={() => this.componentRef}
+                      />
+                      <Export ref={(el) => (this.componentRef = el)} />
                     </RequireAuth>
                   }
                 />
+
+                {/* mock route for testing */}
+                <Route
+                  path="/oneTeamMember/:id"
+                  element={
+                    <RequireAuth>
+                      <ExportSingleMember />
+                    </RequireAuth>
+                  }
+                />
+
                 <Route
                   path="/userManagement"
                   element={

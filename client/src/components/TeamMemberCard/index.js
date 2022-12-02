@@ -9,6 +9,7 @@ export default function TeamMemberCard({
   deleteTeamMember,
 }) {
   const editLink = `/editTeamMember/${id}`;
+  const exportLink = `/oneTeamMember/${id}`;
 
   return (
     <Card key={id}>
@@ -19,9 +20,12 @@ export default function TeamMemberCard({
         <Card.Description>Phone Number: {phoneNumber}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <div className="ui two buttons">
+        <div className="ui three buttons">
           <Button compact primary icon as="a" href={editLink}>
             <Icon name="edit outline" />
+          </Button>
+          <Button compact icon as="a" href={exportLink}>
+            <Icon name="print" />
           </Button>
           <Button
             compact

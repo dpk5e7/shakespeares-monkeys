@@ -18,6 +18,7 @@
   {
     "username": "Rod",
     "email": "r@b.com",
-    "password": "4rfvBGT%"
+    "password": "4rfvBGT%",
+    "is_admin": true
   }
 ]

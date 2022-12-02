@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Menu fluid>
+      <Menu fluid widths={8} className="navBar">
         <Menu.Item>
           Team Handbook
         </Menu.Item>

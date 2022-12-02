@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
 import { GET_ONE_TEAM_MEMBER } from "../utils/queries";
 // import TeamMemberTable from "../components/TeamMemberTable";
 import { Table } from "semantic-ui-react";
@@ -7,32 +8,42 @@ import OneMemberTable from "../components/OneMemberTable";
 
 
 const ExportSingleMember = () => {
-  const { loading, error, data } = useQuery(GET_ONE_TEAM_MEMBER);
-  const teamMember = data?.oneTeamMember || [];
+  // const { id } variable must match the route in App.js
+  const { id } = useParams();
+  const { loading, data } = useQuery(GET_ONE_TEAM_MEMBER, {
+    variables: {oneTeamMemberId: id },
+  });
 
-
+  const oneTeamMember = data?.oneTeamMember || {"email": "none" };
+if (loading) {
+  return <div>Loading...</div>;
+}
+console.log("oneTM", oneTeamMember)
   return (
     <>
     <Table>
-      {/* {teamMember.find(( otm ) => ( */}
         <OneMemberTable 
-        id={teamMember._id}
-        name={teamMember.name}
-        // email={teamMember.contactInfo.email}
-        // phoneNumber={teamMember.contactInfo.phoneNumber}
-        // emergencyPOCName={teamMember.emergencyPOC.name}
-        // emergencyPOCRelationship={otm.emergencyPOC.relationship}
-        // emergencyPOCPhoneNumber={otm.emergencyPOC.phoneNumber}
-        // skills={otm.skills}
-        // responsibilities={otm.responsibilities}
-        // experience={otm.experience}
-        // training={otm.training}
-        // mailingAddress={otm.contactInfo.mailingAddress}
-        // familySituation={otm.familySituation}
-        // importantDates={otm.importantDates.importantDate}
-        // importantDatesDescription={otm.importantDates.description}
+        id={oneTeamMember.id}
+        name={oneTeamMember.name}
+        email={oneTeamMember.contactInfo.email}
+        phoneNumber={oneTeamMember.contactInfo.phoneNumber}
+        mailingAddress={oneTeamMember.contactInfo.mailingAddress}
+        emergencyPOCName={oneTeamMember.emergencyPOC.name}
+        emergencyPOCRelationship={oneTeamMember.emergencyPOC.relationship}
+        emergencyPOCPhoneNumber={oneTeamMember.emergencyPOC.phoneNumber}
+        skills={oneTeamMember.skills}
+        responsibilities={oneTeamMember.responsibilities}
+        experience={oneTeamMember.experience}
+        training={oneTeamMember.training}
+        familySituation={oneTeamMember.familySituation}
+        importantDates={oneTeamMember.importantDates.importantDate}
+        importantDatesDescription={oneTeamMember.importantDates.description}
+        personalInterests={oneTeamMember.personalInterests}
+        notes={oneTeamMember.notes}
+
+
+
         />
-    {/* ))}; */}
       
     </Table>
     </>

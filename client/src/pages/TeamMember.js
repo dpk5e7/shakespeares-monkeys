@@ -26,9 +26,6 @@ const TeamMember = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // const target = event.target;
-    // const name = target.name;
-
     if (inputs.name) {
       try {
 
@@ -41,7 +38,9 @@ const TeamMember = () => {
         email: "",
         phoneNumber: "",
         mailingAddress: "",
-
+        pocName: "",
+        pocphoneNumber: "",
+        relationship: ""
       });
     }
   };

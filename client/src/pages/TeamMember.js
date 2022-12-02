@@ -41,7 +41,9 @@ const TeamMember = () => {
         email: "",
         phoneNumber: "",
         mailingAddress: "",
-
+        pocName: "",
+        pocphoneNumber: "",
+        relationship: ""
       });
     }
   };

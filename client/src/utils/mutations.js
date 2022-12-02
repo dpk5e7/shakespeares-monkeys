@@ -44,6 +44,36 @@ export const ADD_TEAM_MEMBER = gql`
   }
 `;
 
+export const EDIT_TEAM_MEMBER = gql`
+  mutation editTeamMember(
+    $id: ID!
+    $name: String
+    $email: String
+    $phoneNumber: String
+    $mailingAddress: String
+    $pocName: String
+    $pocPhoneNumber: String
+    $pocRelationship: String
+  ) {
+    editTeamMember(
+      id: $id
+      name: $name
+      email: $email
+      phoneNumber: $phoneNumber
+      mailingAddress: $mailingAddress
+      pocName: $pocName
+      pocPhoneNumber: $pocPhoneNumber
+      pocRelationship: $pocRelationship
+    ) {
+      message
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 export const DELETE_TEAM_MEMBER = gql`
   mutation deleteTeamMember($id: ID!) {
     deleteTeamMember(id: $id) {

@@ -47,7 +47,7 @@ const SignupForm = () => {
         password: "",
         conditions: false,
       });
-    }    
+    }
   };
 
   return (
@@ -89,8 +89,11 @@ const SignupForm = () => {
           />
         </Form.Field>
         <Button
+          primary
           type="submit"
-           disabled={!(inputs.username && inputs.email && inputs.password && checked)}
+          disabled={
+            !(inputs.username && inputs.email && inputs.password && checked)
+          }
         >
           Submit
         </Button>

@@ -2,19 +2,32 @@ import React, { useState } from "react";
 import { Form, Header, Divider, Message } from "semantic-ui-react";
 
 // add apollo graphql
-import { useMutation } from "@apollo/client";
-import { ADD_TEAM_MEMBER } from "../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_MY_TEAM } from "../../utils/queries";
+import { EDIT_TEAM_MEMBER } from "../../utils/mutations";
 
-const TeamMember = () => {
+const EditTeamMemberForm = (props) => {
   // state logic
   // set state for alert
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    id: props.id,
+    name: props.name,
+    email: props.email,
+    phoneNumber: props.phoneNumber,
+    mailingAddress: props.mailingAddress,
+    pocName: props.pocName,
+    pocPhoneNumber: props.pocPhoneNumber,
+    pocRelationship: props.pocRelationship,
+  });
 
   // add addUser mutation
-  const [addTeamMember] = useMutation(ADD_TEAM_MEMBER);
+  const [editTeamMember] = useMutation(EDIT_TEAM_MEMBER);
+
+  // This is just to refresh the team cache
+  const { loading, error, data, refetch } = useQuery(GET_MY_TEAM);
+  const teamData = data?.team || [];
 
   // logic goes here
   const handleChange = (event) => {
@@ -29,27 +42,18 @@ const TeamMember = () => {
     if (inputs.name) {
       try {
         // save to the database
-        // call addTeamMember mutation
-        const { data } = await addTeamMember({
+        // call editTeamMember mutation
+        const { data } = await editTeamMember({
           variables: { ...inputs },
         });
 
         setErrorMessage("");
-        setSuccessMessage(data?.addTeamMember.message);
+        setSuccessMessage(data?.editTeamMember.message);
+        refetch(); // refresh the my team cache
       } catch (err) {
         setErrorMessage(err.message);
         setSuccessMessage("");
       }
-
-      setInputs({
-        name: "",
-        email: "",
-        phoneNumber: "",
-        mailingAddress: "",
-        pocName: "",
-        pocPhoneNumber: "",
-        pocRelationship: "",
-      });
     }
   };
 
@@ -122,7 +126,9 @@ const TeamMember = () => {
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
-        <Form.Button center>Submit</Form.Button>
+        <Form.Button primary center>
+          Submit
+        </Form.Button>
         {successMessage && (
           <Message positive>
             <Message.Header>{successMessage}</Message.Header>
@@ -138,4 +144,4 @@ const TeamMember = () => {
   );
 };
 
-export default TeamMember;
+export default EditTeamMemberForm;

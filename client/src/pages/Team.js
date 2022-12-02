@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_MY_TEAM } from "../utils/queries";
 import { DELETE_TEAM_MEMBER } from "../utils/mutations";
@@ -23,14 +24,18 @@ const Team = () => {
   return (
     <>
       <h2>My Team</h2>
-      <Button compact positive icon as="a" href="/TeamMember">
-        <Icon name="add" />
-        New Team Member
-      </Button>
-      <Button compact icon as="a" href="/Export">
-        <Icon name="print" />
-        Print Entire Team
-      </Button>
+      <Link to="/AddTeamMember">
+        <Button compact positive icon>
+          <Icon name="add" />
+          New Team Member
+        </Button>
+      </Link>
+      <Link to="/Export">
+        <Button compact icon as="a" href="/Export">
+          <Icon name="print" />
+          Print Entire Team
+        </Button>
+      </Link>
       <Divider />
       <Card.Group>
         {teamData.map((teamMember) => (

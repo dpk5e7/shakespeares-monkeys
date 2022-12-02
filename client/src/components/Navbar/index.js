@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Menu fluid widths={8} className="navBar">
+      <Menu fluid widths={5} className="navBar">
         <Menu.Item>
           Team Handbook
         </Menu.Item>
@@ -38,15 +38,7 @@ const NavBar = () => {
             </Menu.Item>
 
             <Menu.Item>
-              <Link to="/export">Export</Link>
-            </Menu.Item>
-
-            <Menu.Item>
               <Link to="/team">Team</Link>
-            </Menu.Item>
-
-            <Menu.Item>
-              <Link to="/teammember">Team Member</Link>
             </Menu.Item>
 
             {state.user.is_admin && (

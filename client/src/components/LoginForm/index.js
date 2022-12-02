@@ -54,7 +54,12 @@ const LoginForm = () => {
         // set global state
         dispatch({
           type: LOGIN,
-          user: { _id: user._id, username: user.username, is_admin: user.is_admin, is_locked: user.is_locked },
+          user: {
+            _id: user._id,
+            username: user.username,
+            is_admin: user.is_admin,
+            is_locked: user.is_locked,
+          },
         });
       } catch (err) {
         setErrorMessage(err.message);
@@ -91,10 +96,16 @@ const LoginForm = () => {
             onChange={handleChange}
           />
         </Form.Field>
-
-        <Button type="submit" disabled={!(inputs.email && inputs.password)}>
+        <Button
+          primary
+          type="submit"
+          disabled={!(inputs.email && inputs.password)}
+        >
           Submit
         </Button>
+        <Message>
+          New to us? <a href="/signup">Sign Up</a>
+        </Message>
         {errorMessage && (
           <Message negative>
             <Message.Header>{errorMessage}</Message.Header>
@@ -106,4 +117,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-

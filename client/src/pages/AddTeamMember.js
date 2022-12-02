@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import { Form, Header, Divider, Message } from "semantic-ui-react";
 
-// build a form to match the model in teammember.js under models
-// array of strings or objects for skills or have text area
+// add apollo graphql
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_MY_TEAM } from "../utils/queries";
+import { ADD_TEAM_MEMBER } from "../utils/mutations";
 
-// const handleFormSubmit = async (event) => {
-//   event. preventDefault();
-// }
-
-const TeamMember = () => {
+const AddTeamMember = () => {
   // state logic
   // set state for alert
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [inputs, setInputs] = useState({});
+
+  // add addUser mutation
+  const [addTeamMember] = useMutation(ADD_TEAM_MEMBER);
+
+  // This is just to refresh the team cache
+  const { loading, error, data, refetch } = useQuery(GET_MY_TEAM);
+  const teamData = data?.team || [];
 
   // logic goes here
   const handleChange = (event) => {
@@ -24,21 +30,31 @@ const TeamMember = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
     if (inputs.name) {
       try {
-        // call addUser mutation
-        // const { data } = await addUser({
-        //   variables: { ...inputs },
-        // });
+        // save to the database
+        // call addTeamMember mutation
+        const { data } = await addTeamMember({
+          variables: { ...inputs },
+        });
+
+        setErrorMessage("");
+        setSuccessMessage(data?.addTeamMember.message);
+        refetch(); // refresh the my team cache
       } catch (err) {
-        setErrorMessage(err.Message);
+        setErrorMessage(err.message);
+        setSuccessMessage("");
       }
 
       setInputs({
-        // username: "",
-        // email: "",
-        // password: "",
-        // conditions: false,
+        name: "",
+        email: "",
+        phoneNumber: "",
+        mailingAddress: "",
+        pocName: "",
+        pocPhoneNumber: "",
+        pocRelationship: "",
       });
     }
   };
@@ -53,6 +69,8 @@ const TeamMember = () => {
             name="name"
             control="input"
             type="text"
+            value={inputs.name}
+            onChange={handleChange}
             required
           ></Form.Field>
           <Form.Field
@@ -60,18 +78,24 @@ const TeamMember = () => {
             name="email"
             control="input"
             type="text"
+            value={inputs.email || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Phone Number:"
             name="phoneNumber"
             control="input"
             type="text"
+            value={inputs.phoneNumber || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Mailing Address"
             name="mailingAddress"
             control="input"
             type="text"
+            value={inputs.mailingAddress || ""}
+            onChange={handleChange}
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
@@ -80,25 +104,38 @@ const TeamMember = () => {
         <Form.Group>
           <Form.Field
             label="Name:"
-            name="name"
+            name="pocName"
             control="input"
             type="text"
+            value={inputs.pocName || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Phone Number:"
-            name="phoneNumber"
+            name="pocPhoneNumber"
             control="input"
             type="text"
+            value={inputs.pocPhoneNumber || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Relationship:"
-            name="relationship"
+            name="pocRelationship"
             control="input"
             type="text"
+            value={inputs.pocRelationship || ""}
+            onChange={handleChange}
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
-        <Form.Button center>Submit</Form.Button>
+        <Form.Button primary center>
+          Submit
+        </Form.Button>
+        {successMessage && (
+          <Message positive>
+            <Message.Header>{successMessage}</Message.Header>
+          </Message>
+        )}
         {errorMessage && (
           <Message negative>
             <Message.Header>{errorMessage}</Message.Header>
@@ -109,4 +146,4 @@ const TeamMember = () => {
   );
 };
 
-export default TeamMember;
+export default AddTeamMember;

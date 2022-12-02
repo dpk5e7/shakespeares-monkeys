@@ -36,6 +36,9 @@ import RequireAdmin from "./components/RequireAdmin";
 import { UserProvider } from "./utils/UserContext";
 import { Container } from "semantic-ui-react";
 
+// import css
+import './';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: "/graphql",

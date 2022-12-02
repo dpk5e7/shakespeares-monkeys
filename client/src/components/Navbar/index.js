@@ -25,19 +25,19 @@ const NavBar = () => {
   return (
     <>
       <Menu fluid widths={5} className="navBar">
-        <Menu.Item>
+        <Menu.Item className="navLinks">
           Team Handbook
         </Menu.Item>
         {Auth.loggedIn() ? (
           <>
-            <Menu.Item>
+            <Menu.Item className="navLinks">
               {state.user && <>{state.user.username}</>}
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item className="navLinks">
               <Link to="/">Dashboard</Link>
             </Menu.Item>
 
-            <Menu.Item>
+            <Menu.Item className="navLinks">
               <Link to="/team">Team</Link>
             </Menu.Item>
 

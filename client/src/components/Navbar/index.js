@@ -6,16 +6,6 @@ import Auth from "../../utils/auth";
 import { useUserContext } from "../../utils/UserContext";
 import { LOGOUT } from "../../utils/actions";
 
-const styles = {
-  navStyle: {
-    display: "flex",
-    justifyContent: "center",
-    background: "lightblue",
-    color: "orange",
-    listStyle: "none",
-  },
-};
-
 const NavBar = () => {
   // add global state
   const [state, dispatch] = useUserContext();
@@ -34,61 +24,43 @@ const NavBar = () => {
 
   return (
     <>
-      <Menu>
-        <ul style={styles.navStyle} className="navbar-items">
-          {Auth.loggedIn() ? (
-            <>
-              <li>
-                <Menu.Item>
-                  <Link to="/">Dashboard</Link>
-                </Menu.Item>
-              </li>
-              <li>
-                <Menu.Item>
-                  <Link to="/export">Export</Link>
-                </Menu.Item>
-              </li>
-              <li>
-                <Menu.Item>
-                  <Link to="/team">Team</Link>
-                </Menu.Item>
-              </li>
-              <li>
-                <Menu.Item>
-                  <Link to="/teammember">Team Member</Link>
-                </Menu.Item>
-              </li>
-              <li>
-                <Menu.Item>
-                  <Link to="/oneTeamMember">Export 1</Link>
-                </Menu.Item>
-              </li>
-              {state.user.is_admin && (
-                <li>
-                  <Menu.Item>
-                    <Link to="/userManagement">User Management</Link>
-                  </Menu.Item>
-                </li>
-              )}
-              {state.user && (
-                <li>
-                  {state.user.username}
-                </li>
-              )}
-              <li>
-                <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <Menu.Item as="a" href="/login">
-                  Login
-                </Menu.Item>
-              </li>
-            </>
-          )}
-        </ul>
+      <Menu fluid>
+        <Menu.Item>
+          Team Handbook
+        </Menu.Item>
+        {Auth.loggedIn() ? (
+          <>
+            <Menu.Item>
+              {state.user && <>{state.user.username}</>}
+            </Menu.Item>
+            <Menu.Item>
+              <Link to="/">Dashboard</Link>
+            </Menu.Item>
+
+            <Menu.Item>
+              <Link to="/export">Export</Link>
+            </Menu.Item>
+
+            <Menu.Item>
+              <Link to="/team">Team</Link>
+            </Menu.Item>
+
+            <Menu.Item>
+              <Link to="/teammember">Team Member</Link>
+            </Menu.Item>
+
+            {state.user.is_admin && (
+              <Menu.Item>
+                <Link to="/userManagement">User Management</Link>
+              </Menu.Item>
+            )}
+            <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
+          </>
+        ) : (
+          <Menu.Item as="a" href="/login">
+            Login
+          </Menu.Item>
+        )}
       </Menu>
     </>
   );

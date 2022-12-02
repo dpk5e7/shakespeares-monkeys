@@ -23,13 +23,10 @@ const resolvers = {
 
     // query that returns one team member
     oneTeamMember: async (parent, { oneTeamMemberId }, context) => {
-      // const user = await User.findOne({ _id: context.user._id });
-      const user = await User.findOne({ _id: "63893347dec960825ff22599" });
-      const oneTeamMember = user.team.find((otm) => otm._id == oneTeamMemberId
-      );
+      const user = await User.findOne({ _id: context.user._id });
+      const oneTeamMember = user.team.find((otm) => otm._id == oneTeamMemberId);
       return oneTeamMember;
     },
-
 
     // query that returns team skills
     teamSkills: async (parent, args, context) => {

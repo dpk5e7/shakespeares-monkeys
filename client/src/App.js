@@ -35,6 +35,7 @@ import RequireAdmin from "./components/RequireAdmin";
 
 // import Global State User Context
 import { UserProvider } from "./utils/UserContext";
+import { Container } from "semantic-ui-react";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -69,81 +70,83 @@ function App () {
       <Router>
         <>
           <UserProvider>
-            <Navbar />
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <RequireAuth>
-                    <Dashboard />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/team"
-                element={
-                  <RequireAuth>
-                    <Team />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/teamMember"
-                element={
-                  <RequireAuth>
-                    <TeamMember />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/editTeamMember/:id"
-                element={
-                  <RequireAuth>
-                    <EditTeamMember />
-                  </RequireAuth>
-                }
-              />
-              <Route
-                path="/export"
-                element={
-                  <RequireAuth>
-                    <ReactToPrint
-                    // trigger={() => <button>Print</button>}
-                    trigger={() => {
-                      return <button>Print</button>;
-                    }}
-                    content={() => this.componentRef}
-                    />
-                    <Export ref={el => (this.componentRef = el)} />
-                  </RequireAuth>
-                }
-              />
-
-              {/* mock route for testing */}
-              <Route
-                path="/oneTeamMember/:id"
-                element={
-                  <RequireAuth>
-                    <ExportSingleMember />
-                  </RequireAuth>
-                }
+            <Container>
+              <Navbar />
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <RequireAuth>
+                      <Dashboard />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/team"
+                  element={
+                    <RequireAuth>
+                      <Team />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/teamMember"
+                  element={
+                    <RequireAuth>
+                      <TeamMember />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/editTeamMember/:id"
+                  element={
+                    <RequireAuth>
+                      <EditTeamMember />
+                    </RequireAuth>
+                  }
+                />
+                <Route
+                  path="/export"
+                  element={
+                    <RequireAuth>
+                      <ReactToPrint
+                        // trigger={() => <button>Print</button>}
+                        trigger={() => {
+                          return <button>Print</button>;
+                        }}
+                        content={() => this.componentRef}
+                      />
+                      <Export ref={(el) => (this.componentRef = el)} />
+                    </RequireAuth>
+                  }
                 />
 
-              <Route
-                path="/userManagement"
-                element={
-                  <RequireAdmin>
-                    <UserManagement />
-                  </RequireAdmin>
-                }
-              />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="*"
-                element={<h1 className="display-2">Wrong page!</h1>}
-              />
-            </Routes>
+                {/* mock route for testing */}
+                <Route
+                  path="/oneTeamMember/:id"
+                  element={
+                    <RequireAuth>
+                      <ExportSingleMember />
+                    </RequireAuth>
+                  }
+                />
+
+                <Route
+                  path="/userManagement"
+                  element={
+                    <RequireAdmin>
+                      <UserManagement />
+                    </RequireAdmin>
+                  }
+                />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route
+                  path="*"
+                  element={<h1 className="display-2">Wrong page!</h1>}
+                />
+              </Routes>
+            </Container>
           </UserProvider>
         </>
       </Router>

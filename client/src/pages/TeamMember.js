@@ -8,6 +8,7 @@ import { Form, Header, Divider, Message } from "semantic-ui-react";
 //   event. preventDefault();
 // }
 
+
 const TeamMember = () => {
   // state logic
   // set state for alert
@@ -24,21 +25,23 @@ const TeamMember = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    // const target = event.target;
+    // const name = target.name;
+
     if (inputs.name) {
       try {
-        // call addUser mutation
-        // const { data } = await addUser({
-        //   variables: { ...inputs },
-        // });
+
       } catch (err) {
         setErrorMessage(err.Message);
       }
 
       setInputs({
-        // username: "",
-        // email: "",
-        // password: "",
-        // conditions: false,
+        name: "",
+        email: "",
+        phoneNumber: "",
+        mailingAddress: "",
+
       });
     }
   };
@@ -53,6 +56,8 @@ const TeamMember = () => {
             name="name"
             control="input"
             type="text"
+            value={inputs.name}
+            onChange={handleChange}
             required
           ></Form.Field>
           <Form.Field
@@ -60,18 +65,24 @@ const TeamMember = () => {
             name="email"
             control="input"
             type="text"
+            value={inputs.email || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Phone Number:"
             name="phoneNumber"
             control="input"
             type="text"
+            value={inputs.phoneNumber || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Mailing Address"
             name="mailingAddress"
             control="input"
             type="text"
+            value={inputs.mailingAddress || ""}
+            onChange={handleChange}
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
@@ -80,21 +91,27 @@ const TeamMember = () => {
         <Form.Group>
           <Form.Field
             label="Name:"
-            name="name"
+            name="pocName"
             control="input"
             type="text"
+            value={inputs.pocName || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Phone Number:"
-            name="phoneNumber"
+            name="pocphoneNumber"
             control="input"
             type="text"
+            value={inputs.pocphoneNumber || ""}
+            onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Relationship:"
             name="relationship"
             control="input"
             type="text"
+            value={inputs.relationship || ""}
+            onChange={handleChange}
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>

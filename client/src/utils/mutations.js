@@ -24,6 +24,26 @@ export const DELETE_USER = gql`
   }
 `;
 
+export const ADD_TEAM_MEMBER = gql`
+  mutation addTeamMember(
+    $name: String!
+    $email: String
+    $phoneNumber: String
+    $mailingAddress: String
+    $pocName: String
+    $pocPhoneNumber: String
+    $pocRelationship: String
+  ) {
+    addTeamMember(name: $name, email: $email, phoneNumber: $phoneNumber, mailingAddress: $mailingAddress, pocName: $pocName, pocPhoneNumber: $pocPhoneNumber, pocRelationship: $pocRelationship) {
+      message
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
+
 export const DELETE_TEAM_MEMBER = gql`
   mutation deleteTeamMember($id: ID!) {
     deleteTeamMember(id: $id) {

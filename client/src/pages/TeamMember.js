@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Form, Header, Divider, Message } from "semantic-ui-react";
 
-// build a form to match the model in teammember.js under models
-// array of strings or objects for skills or have text area
-
-// const handleFormSubmit = async (event) => {
-//   event. preventDefault();
-// }
-
+// add apollo graphql
+import { useMutation } from "@apollo/client";
+import { ADD_TEAM_MEMBER } from "../utils/mutations";
 
 const TeamMember = () => {
   // state logic
   // set state for alert
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [inputs, setInputs] = useState({});
+
+  // add addUser mutation
+  const [addTeamMember] = useMutation(ADD_TEAM_MEMBER);
 
   // logic goes here
   const handleChange = (event) => {
@@ -28,9 +28,17 @@ const TeamMember = () => {
 
     if (inputs.name) {
       try {
+        // save to the database
+        // call addTeamMember mutation
+        const { data } = await addTeamMember({
+          variables: { ...inputs },
+        });
 
+        setErrorMessage("");
+        setSuccessMessage(data?.addTeamMember.message);
       } catch (err) {
-        setErrorMessage(err.Message);
+        setErrorMessage(err.message);
+        setSuccessMessage("");
       }
 
       setInputs({
@@ -39,8 +47,8 @@ const TeamMember = () => {
         phoneNumber: "",
         mailingAddress: "",
         pocName: "",
-        pocphoneNumber: "",
-        relationship: ""
+        pocPhoneNumber: "",
+        pocRelationship: "",
       });
     }
   };
@@ -98,23 +106,28 @@ const TeamMember = () => {
           ></Form.Field>
           <Form.Field
             label="Phone Number:"
-            name="pocphoneNumber"
+            name="pocPhoneNumber"
             control="input"
             type="text"
-            value={inputs.pocphoneNumber || ""}
+            value={inputs.pocPhoneNumber || ""}
             onChange={handleChange}
           ></Form.Field>
           <Form.Field
             label="Relationship:"
-            name="relationship"
+            name="pocRelationship"
             control="input"
             type="text"
-            value={inputs.relationship || ""}
+            value={inputs.pocRelationship || ""}
             onChange={handleChange}
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
         <Form.Button center>Submit</Form.Button>
+        {successMessage && (
+          <Message positive>
+            <Message.Header>{successMessage}</Message.Header>
+          </Message>
+        )}
         {errorMessage && (
           <Message negative>
             <Message.Header>{errorMessage}</Message.Header>

@@ -58,6 +58,11 @@ const NavBar = () => {
                   <Link to="/teammember">Team Member</Link>
                 </Menu.Item>
               </li>
+              <li>
+                <Menu.Item>
+                  <Link to="/oneTeamMember">Export 1</Link>
+                </Menu.Item>
+              </li>
               {state.user.is_admin && (
                 <li>
                   <Menu.Item>

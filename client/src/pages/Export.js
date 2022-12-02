@@ -3,6 +3,7 @@ import { GET_MY_TEAM } from "../utils/queries";
 import TeamMemberTable from "../components/TeamMemberTable";
 import { Table } from "semantic-ui-react";
 import UpcomingDates from "../components/UpcomingDates";
+// import ExportSingleMember from "./ExportSingleMember";
 
 
 const Export = () => {
@@ -31,6 +32,7 @@ const Export = () => {
         importantDates={teamMember.importantDates.importantDate}
         importantDatesDescription={teamMember.importantDates.description}
         />
+
       ))}
       
     </Table>

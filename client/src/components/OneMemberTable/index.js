@@ -1,7 +1,6 @@
-import { Table, Icon } from "semantic-ui-react";
+import { Table, Icon, Button } from "semantic-ui-react";
+// import ExportSingleMember from "../../pages/ExportSingleMember";
 import ExportDates from "../ExportDates"
-// import { GET_ONE_TEAM_MEMBER } from "../../utils/queries";
-// import UpcomingDates from "../components/UpcomingDates";
 
 export default function TeamMemberTable({
     id,
@@ -18,6 +17,8 @@ export default function TeamMemberTable({
     importantDates,
     importantDatesDescription,
 }) {
+    // const oneMemberLink = `/oneTeamMember/${id}`;
+    const oneMemberLink = `/oneTeamMember/${id}`;
 
     return (
         <Table celled key={id}>
@@ -105,6 +106,9 @@ export default function TeamMemberTable({
                     </Table.Cell>
                 </Table.Row>
             </Table.Body>
+            <Button compact primary icon as="a" href={oneMemberLink}>
+        <Icon name="male" />
+      </Button>
         </Table>
     );
 }

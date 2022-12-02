@@ -5,7 +5,7 @@ import { GET_ONE_TEAM_MEMBER } from "../../utils/queries";
 
 export default function ExportDates() {
     const { data } = useQuery(GET_ONE_TEAM_MEMBER);
-    const upcomingDatesData = data?.teamUpcomingImportantDates || [];
+    const upcomingDatesData = data?.oneTeamMember || [];
 
     return (
         <Table>
@@ -16,7 +16,7 @@ export default function ExportDates() {
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                {upcomingDatesData.map((date) => (
+                {upcomingDatesData.find((date) => (
                     <TableRow colSpan="2">
                         <Table.Cell colSpan="1"key={date.description}>
                             {date.importantDate}

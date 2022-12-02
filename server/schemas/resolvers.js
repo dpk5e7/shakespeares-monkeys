@@ -161,15 +161,47 @@ const resolvers = {
       return { message, user };
     },
 
-    // deleteUser mutation that returns a success/fail message
-    deleteTeamMember: async (parent, { id }) => {
+    // addTeamMember mutation that returns a success/fail message
+    addTeamMember: async (
+      parent,
+      { name, email, phoneNumber, mailingAddress, pocName, pocPhoneNumber, pocRelationship },
+      context
+    ) => {
+      let message = "No such user exists";
+
+      const user = await User.findOne({ _id: context.user._id });
+
+      if (user) {
+        const newTeamMember = {
+          name: name,
+          contactInfo: {
+            email: email,
+            phoneNumber: phoneNumber,
+            mailingAddress: mailingAddress,
+          },
+          emergencyPOC: {
+            name: pocName,
+            phoneNumber: pocPhoneNumber,
+            relationship: pocRelationship,
+          },
+        };
+
+        user.team.push(newTeamMember);
+        await user.save();
+        message = `${name} added successfully.`;
+      }
+      return { message, user };
+    },
+
+    // deleteTeamMember mutation that returns a success/fail message
+    deleteTeamMember: async (parent, { id }, context) => {
       let message = "No such user exists";
 
       const user = await User.findOne({ _id: context.user._id });
 
       if (user) {
         user.team = user.team.filter((teamMember) => teamMember._id != id);
-        user.save();
+        await user.save();
         message = `${id} deleted successfully.`;
       }
       return { message, user };

@@ -38,15 +38,7 @@ const NavBar = () => {
             </Menu.Item>
 
             <Menu.Item>
-              <Link to="/export">Export</Link>
-            </Menu.Item>
-
-            <Menu.Item>
               <Link to="/team">Team</Link>
-            </Menu.Item>
-
-            <Menu.Item>
-              <Link to="/teammember">Team Member</Link>
             </Menu.Item>
 
             {state.user.is_admin && (

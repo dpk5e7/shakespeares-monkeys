@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, renderMatches } from "react-router-dom";
+import { Icon } from "semantic-ui-react"
 
 // printing Export code
-import ReactToPrint from "react-to-print";
-import { useRef } from "react";
+// import { useReactToPrint } from "react-to-print";
+// import { useRef } from "react";
 
 
 // import apollo graphql
@@ -63,7 +64,10 @@ const client = new ApolloClient({
 
 function App () {
   // for prininting
-  const componentRef = useRef();
+  // let componentRef = useRef();
+  // const handlePrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  // }); 
 
   return (
     <ApolloProvider client={client}>
@@ -109,14 +113,11 @@ function App () {
                   path="/export"
                   element={
                     <RequireAuth>
-                      <ReactToPrint
-                        // trigger={() => <button>Print</button>}
-                        trigger={() => {
-                          return <button>Print</button>;
-                        }}
-                        content={() => this.componentRef}
-                      />
-                      <Export ref={(el) => (this.componentRef = el)} />
+                      {/* <ReactToPrint
+                        trigger={() => <button><Icon name="print" /></button>}
+                        content={() => componentRef}
+                      /> */}
+                      <Export />
                     </RequireAuth>
                   }
                 />

@@ -213,6 +213,11 @@ const resolvers = {
         pocName,
         pocPhoneNumber,
         pocRelationship,
+        familySituation,
+        notes,
+        skills,
+        responsibilities,
+        personalInterests,
       },
       context
     ) => {
@@ -221,9 +226,8 @@ const resolvers = {
       const user = await User.findOne({ _id: context.user._id });
 
       if (user) {
-
         message = "No such team member exists";
-        
+
         const oneTeamMember = user.team.find((otm) => otm._id == id);
 
         if (oneTeamMember) {
@@ -234,9 +238,14 @@ const resolvers = {
           oneTeamMember.emergencyPOC.name = pocName;
           oneTeamMember.emergencyPOC.phoneNumber = pocPhoneNumber;
           oneTeamMember.emergencyPOC.relationship = pocRelationship;
+          oneTeamMember.familySituation = familySituation;
+          oneTeamMember.notes = notes;
+          oneTeamMember.skills = skills;
+          oneTeamMember.responsibilities = responsibilities;
+          oneTeamMember.personalInterests = personalInterests;
           await user.save();
           message = `${name} updated successfully.`;
-        }       
+        }
       }
       return { message, user };
     },

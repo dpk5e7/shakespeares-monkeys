@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Header, Divider, Message } from "semantic-ui-react";
+import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
 import { useQuery, useMutation } from "@apollo/client";
@@ -22,6 +23,19 @@ const EditTeamMemberForm = (props) => {
     pocRelationship: props.pocRelationship,
   });
 
+  // Text Area State
+  const [familySituation, setFamilySituation] = useState(props.familySituation);
+  const [notes, setNotes] = useState(props.notes);
+
+  // Tag State
+  const [skills, setSkills] = useState(props.skills);
+  const [responsibilities, setResponsibilities] = useState(
+    props.responsibilities
+  );
+  const [personalInterests, setPersonalInterests] = useState(
+    props.personalInterests
+  );
+
   // add addUser mutation
   const [editTeamMember] = useMutation(EDIT_TEAM_MEMBER);
 
@@ -36,6 +50,14 @@ const EditTeamMemberForm = (props) => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
+  const handleFamilySituationChange = (event) => {
+    setFamilySituation(event.target.value);
+  };
+
+  const handleNotesChange = (event) => {
+    setNotes(event.target.value);
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -44,12 +66,21 @@ const EditTeamMemberForm = (props) => {
         // save to the database
         // call editTeamMember mutation
         const { data } = await editTeamMember({
-          variables: { ...inputs },
+          variables: {
+            ...inputs,
+            familySituation,
+            notes,
+            skills,
+            responsibilities,
+            personalInterests,
+          },
         });
 
         setErrorMessage("");
         setSuccessMessage(data?.editTeamMember.message);
         refetch(); // refresh the my team cache
+
+        // also need to refetch the charts... somehow
       } catch (err) {
         setErrorMessage(err.message);
         setSuccessMessage("");
@@ -60,7 +91,7 @@ const EditTeamMemberForm = (props) => {
   return (
     <div className="teamInformation">
       <Form onSubmit={handleFormSubmit}>
-        <Header>Contact Info</Header>
+        <Header size="medium">Contact Info</Header>
         <Form.Group>
           <Form.Field
             label="Name:"
@@ -96,9 +127,10 @@ const EditTeamMemberForm = (props) => {
             onChange={handleChange}
           ></Form.Field>
         </Form.Group>
+
         <Divider></Divider>
 
-        <Header>Emergency POC</Header>
+        <Header size="medium">Emergency POC</Header>
         <Form.Group>
           <Form.Field
             label="Name:"
@@ -125,7 +157,58 @@ const EditTeamMemberForm = (props) => {
             onChange={handleChange}
           ></Form.Field>
         </Form.Group>
+
         <Divider></Divider>
+
+        <Header size="medium">Skills</Header>
+
+        <TagsInput
+          value={skills}
+          onChange={setSkills}
+          name="skills"
+          placeHolder="enter skills"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Divider></Divider>
+
+        <Header size="medium">Responsibilities</Header>
+        <TagsInput
+          value={responsibilities}
+          onChange={setResponsibilities}
+          name="responsibilities"
+          placeHolder="enter responsibilities"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Divider></Divider>
+        <Header size="medium">Personal Details</Header>
+
+        <Form.TextArea
+          label="Family Situation"
+          name="familySituation"
+          value={familySituation}
+          onChange={handleFamilySituationChange}
+        />
+
+        <Form.TextArea
+          label="Notes"
+          name="notes"
+          value={notes}
+          onChange={handleNotesChange}
+        />
+
+        <Header size="tiny">Interests</Header>
+        <TagsInput
+          value={personalInterests}
+          onChange={setPersonalInterests}
+          name="personalInterests"
+          placeHolder="enter personal interests"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Divider></Divider>
+
         <Form.Button primary center>
           Submit
         </Form.Button>

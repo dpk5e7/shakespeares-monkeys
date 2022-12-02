@@ -6,7 +6,6 @@ import { Icon } from "semantic-ui-react"
 // import { useReactToPrint } from "react-to-print";
 // import { useRef } from "react";
 
-
 // import apollo graphql
 import {
   ApolloClient,
@@ -19,7 +18,7 @@ import { setContext } from "@apollo/client/link/context";
 // import pages
 import Dashboard from "./pages/Dashboard";
 import Team from "./pages/Team";
-import TeamMember from "./pages/TeamMember";
+import AddTeamMember from "./pages/AddTeamMember";
 import EditTeamMember from "./pages/EditTeamMember";
 import Export from "./pages/Export";
 import UserManagement from "./pages/UserManagement";
@@ -27,7 +26,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
 // MOCK IMPORT TO TEST SINGLE TEAM MEMBER ///////////////////
-import ExportSingleMember from "./pages/ExportSingleMember"
+import ExportSingleMember from "./pages/ExportSingleMember";
 
 // import components
 import Navbar from "./components/Navbar";
@@ -62,7 +61,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App () {
+function App() {
   // for prininting
   // let componentRef = useRef();
   // const handlePrint = useReactToPrint({
@@ -94,10 +93,10 @@ function App () {
                   }
                 />
                 <Route
-                  path="/teamMember"
+                  path="/addTeamMember"
                   element={
                     <RequireAuth>
-                      <TeamMember />
+                      <AddTeamMember />
                     </RequireAuth>
                   }
                 />

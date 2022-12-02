@@ -164,7 +164,15 @@ const resolvers = {
     // addTeamMember mutation that returns a success/fail message
     addTeamMember: async (
       parent,
-      { name, email, phoneNumber, mailingAddress, pocName, pocPhoneNumber, pocRelationship },
+      {
+        name,
+        email,
+        phoneNumber,
+        mailingAddress,
+        pocName,
+        pocPhoneNumber,
+        pocRelationship,
+      },
       context
     ) => {
       let message = "No such user exists";
@@ -189,6 +197,46 @@ const resolvers = {
         user.team.push(newTeamMember);
         await user.save();
         message = `${name} added successfully.`;
+      }
+      return { message, user };
+    },
+
+    // editTeamMember mutation that returns a success/fail message
+    editTeamMember: async (
+      parent,
+      {
+        id,
+        name,
+        email,
+        phoneNumber,
+        mailingAddress,
+        pocName,
+        pocPhoneNumber,
+        pocRelationship,
+      },
+      context
+    ) => {
+      let message = "No such user exists";
+
+      const user = await User.findOne({ _id: context.user._id });
+
+      if (user) {
+
+        message = "No such team member exists";
+        
+        const oneTeamMember = user.team.find((otm) => otm._id == id);
+
+        if (oneTeamMember) {
+          oneTeamMember.name = name;
+          oneTeamMember.contactInfo.email = email;
+          oneTeamMember.contactInfo.phoneNumber = phoneNumber;
+          oneTeamMember.contactInfo.mailingAddress = mailingAddress;
+          oneTeamMember.emergencyPOC.name = pocName;
+          oneTeamMember.emergencyPOC.phoneNumber = pocPhoneNumber;
+          oneTeamMember.emergencyPOC.relationship = pocRelationship;
+          await user.save();
+          message = `${name} updated successfully.`;
+        }       
       }
       return { message, user };
     },

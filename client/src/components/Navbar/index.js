@@ -28,8 +28,8 @@ const NavBar = () => {
 
   return (
     <>
-      <Menu fluid>
-        <Menu.Item>
+      <Menu fluid stackable>
+        <Menu.Item header>
           <Icon name="users" />
           {Auth.loggedIn() && state.user && <>{`${state.user.username}'s `}</>}
           Team Handbook

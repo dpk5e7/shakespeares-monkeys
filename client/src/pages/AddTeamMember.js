@@ -136,7 +136,7 @@ const AddTeamMember = () => {
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
-        <Form.Button primary center>
+        <Form.Button primary center disabled={!inputs.name}>
           Submit
         </Form.Button>
         {successMessage && (

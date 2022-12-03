@@ -227,7 +227,12 @@ const EditTeamMemberForm = (props) => {
         <em>press enter or comma to add new tag</em>
 
         <Header size="tiny">Important Dates</Header>
-        <Grid columns="three" stretched verticalAlign="middle" padded="vertically">
+        <Grid
+          columns="three"
+          stretched
+          verticalAlign="middle"
+          padded="vertically"
+        >
           {importantDates.map((impDate, index) => {
             return (
               <Grid.Row key={index}>
@@ -291,9 +296,10 @@ const EditTeamMemberForm = (props) => {
 
         <Divider></Divider>
 
-        <Form.Button primary center>
+        <Form.Button primary center disabled={!inputs.name}>
           Submit
         </Form.Button>
+
         {successMessage && (
           <Message positive>
             <Message.Header>{successMessage}</Message.Header>

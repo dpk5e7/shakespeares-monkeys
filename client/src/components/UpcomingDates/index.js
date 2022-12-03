@@ -22,8 +22,8 @@ export default function UpcomingDates() {
             </TableRow>
           </Table.Header>
           <Table.Body>
-            {upcomingDatesData.map((date) => (
-              <TableRow>
+            {upcomingDatesData.map((date, index) => (
+              <TableRow key={index}>
                 <Table.Cell key={date.description}>
                   {date.importantDate}
                 </Table.Cell>

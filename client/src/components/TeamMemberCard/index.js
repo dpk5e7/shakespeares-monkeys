@@ -15,7 +15,7 @@ export default function TeamMemberCard({
   const navigate = useNavigate();
 
   return (
-    <Card key={id}>
+    <Card raised key={id}>
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Description>Email: {email}</Card.Description>

@@ -7,7 +7,7 @@ import OneMemberTable from "../components/OneMemberTable";
 // import UpcomingDates from "../components/UpcomingDates";
 
 
-const ExportSingleMember = () => {
+const PrintSingleMember = () => {
   // const { id } variable must match the route in App.js
   const { id } = useParams();
   const { loading, data } = useQuery(GET_ONE_TEAM_MEMBER, {
@@ -48,6 +48,6 @@ console.log("oneTM", oneTeamMember)
     </Table>
     </>
 )}
-export default ExportSingleMember;
+export default PrintSingleMember;
 
 

@@ -22,7 +22,9 @@ ChartJS.register(
 );
 
 export default function TeamSkillsChart() {
-  const { loading, error, data } = useQuery(GET_TEAM_SKILLS);
+  const { loading, error, data } = useQuery(GET_TEAM_SKILLS, {
+    fetchPolicy: "network-only",
+  });
   const skillsData = data?.teamSkills || [];
 
   let red = Math.round(Math.random() * 255);

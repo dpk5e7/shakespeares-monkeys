@@ -7,7 +7,9 @@ import { GET_TEAM_RESPONSIBILITIES } from "../../../utils/queries";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function TeamResponsibilitiesChart() {
-  const { loading, error, data } = useQuery(GET_TEAM_RESPONSIBILITIES);
+  const { loading, error, data } = useQuery(GET_TEAM_RESPONSIBILITIES, {
+    fetchPolicy: "network-only",
+  });
   const responsibilitiesData = data?.teamResponsibilities || [];
 
   const backgroundColors = [];

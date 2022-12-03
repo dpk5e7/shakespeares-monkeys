@@ -12,7 +12,15 @@ const AddTeamMember = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    mailingAddress: "",
+    pocName: "",
+    pocPhoneNumber: "",
+    pocRelationship: "",
+  });
 
   // add addUser mutation
   const [addTeamMember] = useMutation(ADD_TEAM_MEMBER);
@@ -128,7 +136,7 @@ const AddTeamMember = () => {
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
-        <Form.Button primary center>
+        <Form.Button primary center disabled={!inputs.name}>
           Submit
         </Form.Button>
         {successMessage && (

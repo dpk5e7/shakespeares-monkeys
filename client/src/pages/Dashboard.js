@@ -9,9 +9,9 @@ const Dashboard = () => {
   return (
     <>
       <Container>
-        <Header>Dashboard</Header>
-        <Card.Group>
-          <Card>
+        <Header size="large">Dashboard</Header>
+        <Card.Group centered>
+          <Card centered raised>
             <Card.Content>
               <Card.Header>Skills</Card.Header>
             </Card.Content>
@@ -19,7 +19,7 @@ const Dashboard = () => {
               <TeamSkillsChart />
             </Card.Content>
           </Card>
-          <Card>
+          <Card centered raised>
             <Card.Content>
               <Card.Header>Responsibilities</Card.Header>
             </Card.Content>
@@ -27,7 +27,7 @@ const Dashboard = () => {
               <TeamResponsibilitiesChart />
             </Card.Content>
           </Card>
-          <Card>
+          <Card centered raised>
             <Card.Content>
               <Card.Header>Personal Interests</Card.Header>
             </Card.Content>
@@ -35,7 +35,7 @@ const Dashboard = () => {
               <TeamPersonalInterestsChart />
             </Card.Content>
           </Card>
-          <Card>
+          <Card centered raised>
             <Card.Content>
               <Card.Header>Upcoming Dates</Card.Header>
             </Card.Content>

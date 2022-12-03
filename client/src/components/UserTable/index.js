@@ -76,21 +76,19 @@ const UserTable = () => {
       <Table
         striped
         selectable
-        sortable
-        collapsing
         compact
         celled
         className="attached fluid segment"
-        color="orange"
+        color="red"
       >
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>User Name</Table.HeaderCell>
             <Table.HeaderCell>Email</Table.HeaderCell>
             <Table.HeaderCell>Last Login</Table.HeaderCell>
-            <Table.HeaderCell>Admin</Table.HeaderCell>
-            <Table.HeaderCell>Locked</Table.HeaderCell>
-            <Table.HeaderCell>Delete</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Admin</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Locked</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -98,7 +96,7 @@ const UserTable = () => {
           {currentData.map(
             ({ _id, username, email, is_admin, is_locked, last_login }) => {
               return (
-                <Table.Row key={_id}>
+                <Table.Row key={_id} error={is_locked}>
                   <Table.Cell>{username}</Table.Cell>
                   <Table.Cell>{email}</Table.Cell>
                   <Table.Cell>{formatDate(last_login)}</Table.Cell>

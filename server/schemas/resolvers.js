@@ -136,7 +136,7 @@ const resolvers = {
 
       // Sort so the nearest dates are first
       teamUpcomingImportantDates.sort((date1, date2) =>
-        date1.importantDate > date2.importantDate ? 1 : -1
+        new Date(date1.importantDate) > new Date(date2.importantDate) ? 1 : -1
       );
 
       return teamUpcomingImportantDates;

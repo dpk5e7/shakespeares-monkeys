@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Form, Header, Divider, Message } from "semantic-ui-react";
 
 // add apollo graphql
-import { useMutation, useQuery } from "@apollo/client";
-import { GET_MY_TEAM } from "../utils/queries";
+import { useMutation } from "@apollo/client";
 import { ADD_TEAM_MEMBER } from "../utils/mutations";
 
 const AddTeamMember = () => {

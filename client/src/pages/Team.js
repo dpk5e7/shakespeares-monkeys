@@ -30,8 +30,8 @@ const Team = () => {
           New Team Member
         </Button>
       </Link>
-      <Link to="/Export">
-        <Button compact icon as="a" href="/Export">
+      <Link to="/printTeam">
+        <Button compact icon as="a" href="/printTeam">
           <Icon name="print" />
           Print Entire Team
         </Button>

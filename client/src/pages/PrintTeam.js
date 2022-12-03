@@ -2,11 +2,10 @@ import { useQuery } from "@apollo/client";
 import { GET_MY_TEAM } from "../utils/queries";
 import TeamMemberTable from "../components/TeamMemberTable";
 import { Table } from "semantic-ui-react";
-import UpcomingDates from "../components/UpcomingDates";
-// import ExportSingleMember from "./ExportSingleMember";
+// import UpcomingDates from "../components/UpcomingDates";
 
 
-const Export = () => {
+const PrintTeam = () => {
   const { loading, error, data } = useQuery(GET_MY_TEAM);
   const teamData = data?.team || [];
 
@@ -40,6 +39,6 @@ const Export = () => {
   )
 }
 
-export default Export
+export default PrintTeam
 
 

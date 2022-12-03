@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, renderMatches } from "react-router-dom";
 import { Icon } from "semantic-ui-react"
 
-// printing Export code
+// printing PrintTeam code
 // import { useReactToPrint } from "react-to-print";
 // import { useRef } from "react";
 
@@ -20,13 +20,11 @@ import Dashboard from "./pages/Dashboard";
 import Team from "./pages/Team";
 import AddTeamMember from "./pages/AddTeamMember";
 import EditTeamMember from "./pages/EditTeamMember";
-import Export from "./pages/Export";
+import PrintTeam from "./pages/PrintTeam";
 import UserManagement from "./pages/UserManagement";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-
-// MOCK IMPORT TO TEST SINGLE TEAM MEMBER ///////////////////
-import ExportSingleMember from "./pages/ExportSingleMember";
+import PrintSingleMember from "./pages/PrintSingleMember";
 
 // import components
 import Navbar from "./components/Navbar";
@@ -109,24 +107,23 @@ function App() {
                   }
                 />
                 <Route
-                  path="/export"
+                  path="/printTeam"
                   element={
                     <RequireAuth>
                       {/* <ReactToPrint
                         trigger={() => <button><Icon name="print" /></button>}
                         content={() => componentRef}
                       /> */}
-                      <Export />
+                      <PrintTeam />
                     </RequireAuth>
                   }
                 />
 
-                {/* mock route for testing */}
                 <Route
-                  path="/oneTeamMember/:id"
+                  path="/printTeamMember/:id"
                   element={
                     <RequireAuth>
-                      <ExportSingleMember />
+                      <PrintSingleMember />
                     </RequireAuth>
                   }
                 />

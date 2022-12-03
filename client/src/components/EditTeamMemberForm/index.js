@@ -3,8 +3,7 @@ import { Form, Header, Divider, Message, Icon, Grid } from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_MY_TEAM } from "../../utils/queries";
+import { useMutation } from "@apollo/client";
 import { EDIT_TEAM_MEMBER } from "../../utils/mutations";
 
 const EditTeamMemberForm = (props) => {

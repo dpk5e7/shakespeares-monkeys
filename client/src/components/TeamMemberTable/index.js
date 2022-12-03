@@ -15,6 +15,7 @@ export default function TeamMemberTable({
     skills,
     responsibilities,
     training,
+    mailingAddress,
     importantDates,
     importantDatesDescription,
 }) {
@@ -23,12 +24,12 @@ export default function TeamMemberTable({
         <Table celled key={id}>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell textAlign="center" colSpan="3"><h2>Team Member: {name}</h2></Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center" colSpan="8"><h2>Team Member: {name}</h2></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing><h3>Contact Info </h3>
+                <Table.Row rowSpan="8">
+                    <Table.Cell colSpan collapsing><h3>Contact Info </h3>
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
@@ -42,67 +43,63 @@ export default function TeamMemberTable({
                     </Table.Cell>
                     <Table.Cell collapsing>
                         <h5><Icon name="emergency" /> EmergencyPOC: </h5>
-                        Name: {emergencyPOCName} <br></br>
+                        Name: {emergencyPOCName} / {''}
                         Relationship: {emergencyPOCRelationship}<br></br>
                         Phone Number: {emergencyPOCPhoneNumber}
                     </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                <Table.Cell colSpan="3" collapsing><h3>Important Upcoming Dates </h3>
-                <ExportDates />
-                </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing><h3>Experience </h3>
+                    <Table.Cell collapsing>
+                        <h5><Icon name="home" /> Mailing Address: </h5>
+                        {mailingAddress}
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                    <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" />Number of Years at Company: { }
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" /> Training: <br></br>
-                        {training}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" /> Past Employment: <br></br>
-                        {experience}
-                    </Table.Cell>
                 </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing>
+                <Table.Row rowSpan="1">
+                    <Table.Cell collapsing><h3>Experience</h3>
+                    </Table.Cell>
+                    <Table.Cell collapsing>
                         <h3>Skills </h3>
                     </Table.Cell>
+                    <Table.Cell rowSpan="" collasping>
+                        <h3>Training</h3>
+                    </Table.Cell>
+                    <Table.Cell colSpan="" collasping>
+                        <h3>Responsibilities</h3>
+                    </Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 1: <br></br>
-                        {skills}
+                    <Table.Cell colSpan="1" collasping>
+                        {experience}
                     </Table.Cell>
                     <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 2
+                        <ul style={{ paddingLeft: 20 }}>
+                            {skills.map((skill) => (
+                                <li key={skill} >
+                                    {skill}</li>
+                            ))}
+                        </ul>
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing>
+                        <ul style={{ paddingLeft: 20 }}>
+                            {training.map((train) => (
+                                <li key={train} >
+                                    {train}</li>
+                            ))}
+                        </ul>
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing>
+                        <ul style={{ paddingLeft: 20 }}>
+                            {responsibilities.map((responsibility) => (
+                                <li key={responsibility} >
+                                    {responsibility}</li>
+                            ))}
+                        </ul>
+                    </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                </Table.Row>
+                <Table.Row>
 
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 3
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing backgroundColor="lightblue">
-                        <h3>Responsbilities </h3>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 1: <br></br>
-                        {responsibilities}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 2
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 3
-                    </Table.Cell>
                 </Table.Row>
             </Table.Body>
         </Table>

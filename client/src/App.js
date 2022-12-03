@@ -1,10 +1,9 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route, renderMatches } from "react-router-dom";
-import { Icon } from "semantic-ui-react"
 
 // printing PrintTeam code
-// import { useReactToPrint } from "react-to-print";
-// import { useRef } from "react";
+import ReactToPrint  from "react-to-print";
+import { useRef } from "react"
+
 
 // import apollo graphql
 import {
@@ -20,20 +19,21 @@ import Dashboard from "./pages/Dashboard";
 import Team from "./pages/Team";
 import AddTeamMember from "./pages/AddTeamMember";
 import EditTeamMember from "./pages/EditTeamMember";
-import PrintTeam from "./pages/PrintTeam";
 import UserManagement from "./pages/UserManagement";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import PrintSingleMember from "./pages/PrintSingleMember";
-
-// import components
+import PrintExport from "./pages/PrintExport";
 import Navbar from "./components/Navbar";
 import RequireAuth from "./components/RequireAuth";
 import RequireAdmin from "./components/RequireAdmin";
 
+
 // import Global State User Context
 import { UserProvider } from "./utils/UserContext";
 import { Container } from "semantic-ui-react";
+import PrintTeam from "./pages/PrintTeam";
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -60,11 +60,7 @@ const client = new ApolloClient({
 });
 
 function App() {
-  // for prininting
-  // let componentRef = useRef();
-  // const handlePrint = useReactToPrint({
-  //   content: () => componentRef.current,
-  // }); 
+// const componentRef = useRef();
 
   return (
     <ApolloProvider client={client}>
@@ -111,8 +107,8 @@ function App() {
                   element={
                     <RequireAuth>
                       {/* <ReactToPrint
-                        trigger={() => <button><Icon name="print" /></button>}
-                        content={() => componentRef}
+                        trigger={() => <button>Print</button>}
+                        content={() => componentRef.current}
                       /> */}
                       <PrintTeam />
                     </RequireAuth>

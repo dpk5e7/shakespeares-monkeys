@@ -42,10 +42,6 @@ const EditTeamMemberForm = (props) => {
   // add addUser mutation
   const [editTeamMember] = useMutation(EDIT_TEAM_MEMBER);
 
-  // This is just to refresh the team cache
-  const { loading, error, data, refetch } = useQuery(GET_MY_TEAM);
-  const teamData = data?.team || [];
-
   // logic goes here
   const handleChange = (event) => {
     const name = event.target.name;
@@ -111,9 +107,6 @@ const EditTeamMemberForm = (props) => {
 
         setErrorMessage("");
         setSuccessMessage(data?.editTeamMember.message);
-        refetch(); // refresh the my team cache
-
-        // also need to refetch the charts... somehow
       } catch (err) {
         setErrorMessage(err.message);
         setSuccessMessage("");

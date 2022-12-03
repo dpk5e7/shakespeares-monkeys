@@ -25,10 +25,6 @@ const AddTeamMember = () => {
   // add addUser mutation
   const [addTeamMember] = useMutation(ADD_TEAM_MEMBER);
 
-  // This is just to refresh the team cache
-  const { loading, error, data, refetch } = useQuery(GET_MY_TEAM);
-  const teamData = data?.team || [];
-
   // logic goes here
   const handleChange = (event) => {
     const name = event.target.name;
@@ -49,7 +45,6 @@ const AddTeamMember = () => {
 
         setErrorMessage("");
         setSuccessMessage(data?.addTeamMember.message);
-        refetch(); // refresh the my team cache
       } catch (err) {
         setErrorMessage(err.message);
         setSuccessMessage("");

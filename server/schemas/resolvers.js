@@ -218,6 +218,7 @@ const resolvers = {
         skills,
         responsibilities,
         personalInterests,
+        dates,
       },
       context
     ) => {
@@ -243,6 +244,18 @@ const resolvers = {
           oneTeamMember.skills = skills;
           oneTeamMember.responsibilities = responsibilities;
           oneTeamMember.personalInterests = personalInterests;
+
+          // Rebuild important dates
+          const importantDates = [];
+          for (let i = 0; i < dates.length; i += 2) {
+            let newDate = {
+              importantDate: dates[i],
+              description: dates[i + 1],
+            };
+            importantDates.push(newDate);
+          }
+          oneTeamMember.importantDates = importantDates;
+
           await user.save();
           message = `${name} updated successfully.`;
         }

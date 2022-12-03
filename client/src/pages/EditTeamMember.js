@@ -34,6 +34,7 @@ const EditTeamMember = () => {
           skills={data.oneTeamMember.skills}
           responsibilities={data.oneTeamMember.responsibilities}
           personalInterests={data.oneTeamMember.personalInterests}
+          importantDates={data.oneTeamMember.importantDates}
         />
       )}
     </>

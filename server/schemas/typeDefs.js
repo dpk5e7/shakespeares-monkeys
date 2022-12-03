@@ -99,6 +99,7 @@ const typeDefs = gql`
       skills: [String]
       responsibilities: [String]
       personalInterests: [String]
+      dates: [String]
     ): Message
     deleteTeamMember(id: ID!): Message
     login(email: String!, password: String!): Auth

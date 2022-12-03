@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Icon, Grid } from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
@@ -36,6 +36,9 @@ const EditTeamMemberForm = (props) => {
     props.personalInterests
   );
 
+  // Important Dates State
+  const [importantDates, setImportantDates] = useState(props.importantDates);
+
   // add addUser mutation
   const [editTeamMember] = useMutation(EDIT_TEAM_MEMBER);
 
@@ -58,11 +61,40 @@ const EditTeamMemberForm = (props) => {
     setNotes(event.target.value);
   };
 
+  const handleImportantDatesChange = (event, index) => {
+    let data = [...importantDates];
+    data[index][event.target.name] = event.target.value;
+    setImportantDates(data);
+  };
+
+  const addImportantDate = () => {
+    let object = {
+      importantDate: "",
+      description: "",
+    };
+
+    setImportantDates([...importantDates, object]);
+  };
+
+  const removeImportantDate = (index) => {
+    let data = [...importantDates];
+    data.splice(index, 1);
+    setImportantDates(data);
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     if (inputs.name) {
       try {
+
+        // put important dates in a format that can be sent through apollo graphql
+        const dates = [];
+        for (let impDate of importantDates) {
+          dates.push(impDate.importantDate);
+          dates.push(impDate.description);
+        }
+
         // save to the database
         // call editTeamMember mutation
         const { data } = await editTeamMember({
@@ -73,6 +105,7 @@ const EditTeamMemberForm = (props) => {
             skills,
             responsibilities,
             personalInterests,
+            dates,
           },
         });
 
@@ -184,6 +217,64 @@ const EditTeamMemberForm = (props) => {
         <Divider></Divider>
         <Header size="medium">Personal Details</Header>
 
+        <Header size="tiny">Interests</Header>
+        <TagsInput
+          value={personalInterests}
+          onChange={setPersonalInterests}
+          name="personalInterests"
+          placeHolder="enter personal interests"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Header size="tiny">Important Dates</Header>
+        <Grid columns="three" stretched verticalAlign="middle" padded="vertically">
+          {importantDates.map((impDate, index) => {
+            return (
+              <Grid.Row key={index}>
+                <Grid.Column>
+                  <Form.Input
+                    name="importantDate"
+                    placeholder="Important Date"
+                    onChange={(event) =>
+                      handleImportantDatesChange(event, index)
+                    }
+                    value={impDate.importantDate}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Input
+                    name="description"
+                    placeholder="Description"
+                    onChange={(event) =>
+                      handleImportantDatesChange(event, index)
+                    }
+                    value={impDate.description}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Button
+                    compact
+                    negative
+                    icon
+                    onClick={() => removeImportantDate(index)}
+                  >
+                    <Icon name="trash alternate outline" />
+                  </Form.Button>
+                </Grid.Column>
+              </Grid.Row>
+            );
+          })}
+
+          <Grid.Row>
+            <Grid.Column width="3">
+              <Form.Button positive compact onClick={addImportantDate}>
+                <Icon name="add" />
+                New Important Date
+              </Form.Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
         <Form.TextArea
           label="Family Situation"
           name="familySituation"
@@ -197,15 +288,6 @@ const EditTeamMemberForm = (props) => {
           value={notes}
           onChange={handleNotesChange}
         />
-
-        <Header size="tiny">Interests</Header>
-        <TagsInput
-          value={personalInterests}
-          onChange={setPersonalInterests}
-          name="personalInterests"
-          placeHolder="enter personal interests"
-        />
-        <em>press enter or comma to add new tag</em>
 
         <Divider></Divider>
 

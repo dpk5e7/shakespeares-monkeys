@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message, Icon, Grid } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Icon, Grid, Container } from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
@@ -114,7 +114,7 @@ const EditTeamMemberForm = (props) => {
   };
 
   return (
-    <div className="teamInformation">
+    <Container>
       <Form onSubmit={handleFormSubmit}>
         <Header size="medium">Contact Info</Header>
         <Form.Group>
@@ -288,22 +288,24 @@ const EditTeamMemberForm = (props) => {
 
         <Divider></Divider>
 
-        <Form.Button primary center disabled={!inputs.name}>
-          Submit
-        </Form.Button>
+        <Form.Group inline>
+          <Form.Button primary center disabled={!inputs.name}>
+            Submit
+          </Form.Button>
 
-        {successMessage && (
-          <Message positive>
-            <Message.Header>{successMessage}</Message.Header>
-          </Message>
-        )}
-        {errorMessage && (
-          <Message negative>
-            <Message.Header>{errorMessage}</Message.Header>
-          </Message>
-        )}
+          {successMessage && (
+            <Message positive>
+              <Message.Header>{successMessage}</Message.Header>
+            </Message>
+          )}
+          {errorMessage && (
+            <Message negative>
+              <Message.Header>{errorMessage}</Message.Header>
+            </Message>
+          )}
+        </Form.Group>
       </Form>
-    </div>
+    </Container>
   );
 };
 

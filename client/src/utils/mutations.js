@@ -7,6 +7,8 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        is_admin
+        is_locked
       }
     }
   }

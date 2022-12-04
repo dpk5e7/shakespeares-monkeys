@@ -25,13 +25,14 @@ import Login from "./pages/Login";
 import PrintSingleMember from "./pages/PrintSingleMember";
 import PrintExport from "./pages/PrintExport";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import RequireAuth from "./components/RequireAuth";
 import RequireAdmin from "./components/RequireAdmin";
 
 
 // import Global State User Context
 import { UserProvider } from "./utils/UserContext";
-import { Container } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
 import PrintTeam from "./pages/PrintTeam";
 
 
@@ -70,6 +71,8 @@ function App() {
             <Container>
               <Navbar />
               <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route
                   path="/"
                   element={
@@ -132,13 +135,9 @@ function App() {
                     </RequireAdmin>
                   }
                 />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route
-                  path="*"
-                  element={<h1 className="display-2">Wrong page!</h1>}
-                />
+                <Route path="*" element={<Header>Wrong page!</Header>} />
               </Routes>
+              <Footer />
             </Container>
           </UserProvider>
         </>

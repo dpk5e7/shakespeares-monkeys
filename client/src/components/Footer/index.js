@@ -11,7 +11,7 @@ const Footer = () => {
     <>
       <Message style={footerStyle}>
         <Icon name="copyright outline" />
-        Shakespeare's Monkeys
+        2022 Shakespeare's Monkeys
       </Message>
     </>
   );

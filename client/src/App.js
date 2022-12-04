@@ -1,9 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, renderMatches } from "react-router-dom";
-
-// printing PrintTeam code
-import ReactToPrint  from "react-to-print";
-import { useRef } from "react"
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // import apollo graphql
 import {
@@ -23,7 +18,7 @@ import UserManagement from "./pages/UserManagement";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import PrintSingleMember from "./pages/PrintSingleMember";
-import PrintExport from "./pages/PrintExport";
+import PrintTeam from "./pages/PrintTeam";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RequireAuth from "./components/RequireAuth";
@@ -32,9 +27,8 @@ import RequireAdmin from "./components/RequireAdmin";
 
 // import Global State User Context
 import { UserProvider } from "./utils/UserContext";
-import { Container, Header } from "semantic-ui-react";
-import PrintTeam from "./pages/PrintTeam";
 
+import { Container, Header } from "semantic-ui-react";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -61,7 +55,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-// const componentRef = useRef();
 
   return (
     <ApolloProvider client={client}>
@@ -71,8 +64,11 @@ function App() {
             <Container>
               <Navbar />
               <Routes>
+
                 <Route path="/login" element={<Login />} />
+
                 <Route path="/signup" element={<Signup />} />
+
                 <Route
                   path="/"
                   element={
@@ -109,10 +105,6 @@ function App() {
                   path="/printTeam"
                   element={
                     <RequireAuth>
-                      {/* <ReactToPrint
-                        trigger={() => <button>Print</button>}
-                        content={() => componentRef.current}
-                      /> */}
                       <PrintTeam />
                     </RequireAuth>
                   }
@@ -135,7 +127,9 @@ function App() {
                     </RequireAdmin>
                   }
                 />
+
                 <Route path="*" element={<Header>Wrong page!</Header>} />
+              
               </Routes>
               <Footer />
             </Container>

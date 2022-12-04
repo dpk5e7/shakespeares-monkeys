@@ -1,7 +1,4 @@
 import { Table, Icon } from "semantic-ui-react";
-import ExportDates from "../ExportDates"
-// import { GET_ONE_TEAM_MEMBER } from "../../utils/queries";
-// import UpcomingDates from "../components/UpcomingDates";
 
 export default function TeamMemberTable({
     id,
@@ -16,20 +13,20 @@ export default function TeamMemberTable({
     responsibilities,
     training,
     mailingAddress,
-    importantDates,
-    importantDatesDescription,
+    // importantDates,
+    // importantDatesDescription,
 }) {
 
     return (
         <Table celled key={id}>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell textAlign="center" colSpan="8"><h2>Team Member: {name}</h2></Table.HeaderCell>
+                    <Table.HeaderCell textAlign="center" colSpan="4"><h2>Team Member: {name}</h2></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>
                 <Table.Row rowSpan="8">
-                    <Table.Cell colSpan collapsing><h3>Contact Info </h3>
+                    <Table.Cell style={{ background: "lightgrey"}} colSpan="4"collapsing><h3>Contact Info </h3>
                     </Table.Cell>
                 </Table.Row>
                 <Table.Row>
@@ -42,19 +39,21 @@ export default function TeamMemberTable({
                         {phoneNumber}
                     </Table.Cell>
                     <Table.Cell collapsing>
-                        <h5><Icon name="emergency" /> EmergencyPOC: </h5>
-                        Name: {emergencyPOCName} / {''}
-                        Relationship: {emergencyPOCRelationship}<br></br>
-                        Phone Number: {emergencyPOCPhoneNumber}
-                    </Table.Cell>
-                    <Table.Cell collapsing>
                         <h5><Icon name="home" /> Mailing Address: </h5>
                         {mailingAddress}
                     </Table.Cell>
+                    <Table.Cell collapsing>
+                        <br></br><h5><Icon name="emergency" /> EmergencyPOC: </h5>
+                        Name: {emergencyPOCName} / {''}
+                        Relationship: {emergencyPOCRelationship}<br></br>
+                        Phone Number: {emergencyPOCPhoneNumber}<br></br>
+                        {''} <br></br><br></br>
+                    </Table.Cell>
+                   
                 </Table.Row>
                 <Table.Row>
                 </Table.Row>
-                <Table.Row rowSpan="1">
+                <Table.Row style={{ background: "lightgrey"}}rowSpan="1">
                     <Table.Cell collapsing><h3>Experience</h3>
                     </Table.Cell>
                     <Table.Cell collapsing>
@@ -95,11 +94,6 @@ export default function TeamMemberTable({
                             ))}
                         </ul>
                     </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                </Table.Row>
-                <Table.Row>
-
                 </Table.Row>
             </Table.Body>
         </Table>

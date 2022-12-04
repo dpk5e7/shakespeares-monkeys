@@ -58,7 +58,7 @@ const SignupForm = () => {
           },
         });
 
-        navigate("/");
+        navigate("/team");
       } catch (err) {
         setErrorMessage(err.Message);
       }

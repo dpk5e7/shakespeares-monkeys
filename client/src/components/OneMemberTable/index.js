@@ -150,7 +150,8 @@ export default function OneMemberTable({
                         collapsing>
                         <h4>Description</h4>
                     </Table.Cell>
-                    <Table.Cell style={{ background: "lightgrey" }} colSpan="2">
+                    <Table.Cell style={{ background: "lightgrey" }}
+                        colSpan="2">
                         <h4>Date</h4>
                     </Table.Cell>
                 </Table.Row>
@@ -161,7 +162,8 @@ export default function OneMemberTable({
                             listStyle: "none"
                         }}>
                             {importantDates.map((impDate) => (
-                                <li key={impDate.description}>{impDate.description}</li>
+                                <li key={impDate.description}>
+                                    {impDate.description}</li>
                             ))}
                         </ul>
                     </Table.Cell>
@@ -171,7 +173,8 @@ export default function OneMemberTable({
                             listStyle: "none"
                         }}>
                             {importantDates.map((impDate) => (
-                                <li key={impDate.description}>{impDate.importantDate}</li>
+                                <li key={impDate.description}>
+                                    {impDate.importantDate}</li>
                             ))}
                         </ul>
                     </Table.Cell>

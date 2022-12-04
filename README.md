@@ -14,7 +14,7 @@ got you covered.  Team Handbook will help you not only have the most useful data
 for your employees, but will make them feel more valued within your organization which makes
 Team Handbook a truly "People First" app.
 ```
-### [https://shakespeares-monkeys.herokuapp.com/](https://shakespeares-monkeys.herokuapp.com/)
+### [https://dpk5e7-team-handbook.herokuapp.com/](https://dpk5e7-team-handbook.herokuapp.com/)
 
 ## Table Of Contents
 - [Acceptance Criteria](#acceptance-criteria)
@@ -64,9 +64,28 @@ Example charts include:
 
 ## Static Screenshots
 
-## Challenges
+![Screenshot1](./assets/screenshot1.png)
 
-## Future Development
+![Screenshot2](./assets/screenshot2.png)
+
+![Screenshot3](./assets/screenshot3.png)
+
+## Challenges
+Modal troubles (Bootstrap vs Semantic UI)
+Single-Query to render
+
+## Future Enhancements
+- Have the user be able to upload a picture for each team member.
+
+- Potential to build in organization structure (and create a structural hierarchy Admins-->Managers-->teamleads)
+
+- PKI-Public Key Infrastructure
+
+- Having the ability to transfer team members to another manager
+
+- Create a modal for sign in/sign up
+
+-more user-friendly error messages
 
 ## License
 

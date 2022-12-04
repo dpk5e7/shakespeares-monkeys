@@ -1,25 +1,26 @@
-import { Table } from "semantic-ui-react";
-import { Icon } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
+
+import { Table, Icon, Button } from "semantic-ui-react";
+
 
 export default function OneMemberTable({
-    id,
-    name,
-    email,
-    phoneNumber,
-    mailingAddress,
-    emergencyPOCName,
-    emergencyPOCPhoneNumber,
-    emergencyPOCRelationship,
-    experience,
-    skills,
-    responsibilities,
-    training,
-    familySituation,
-    personalInterests,
-    notes,
-    importantDates,
+  id,
+  name,
+  email,
+  phoneNumber,
+  mailingAddress,
+  emergencyPOCName,
+  emergencyPOCPhoneNumber,
+  emergencyPOCRelationship,
+  experience,
+  skills,
+  responsibilities,
+  training,
+  familySituation,
+  personalInterests,
+  notes,
+  importantDates,
 }) {
+
     return (
         <Table
             style={{
@@ -98,103 +99,104 @@ export default function OneMemberTable({
                     </Table.Cell>
                 </Table.Row>
 
-                <Table.Row>
-                    <Table.Cell colSpan="" collasping>
-                        {experience}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <ul style={{ paddingLeft: 20 }}>
-                            {skills.map((skill) => (
-                                <li key={skill} >
-                                    {skill}</li>
-                            ))}
-                        </ul>
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collasping>
-                        <ul style={{ paddingLeft: 20 }}>
-                            {training.map((train) => (
-                                <li key={train} >
-                                    {train}</li>
-                            ))}
-                        </ul>
-                    </Table.Cell>
+        <Table.Row>
+          <Table.Cell colSpan="" collasping>
+            {experience}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <ul style={{ paddingLeft: 20 }}>
+              {skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Cell colSpan="1" collasping>
+            <ul style={{ paddingLeft: 20 }}>
+              {training.map((train) => (
+                <li key={train}>{train}</li>
+              ))}
+            </ul>
+          </Table.Cell>
 
-                    <Table.Cell colSpan="2" collapsing>
-                        <ul style={{ paddingLeft: 20 }}>
-                            {responsibilities.map((responsibility) => (
-                                <li key={responsibility} >
-                                    {responsibility}</li>
-                            ))}
-                        </ul>
-                    </Table.Cell>
-                    <Table.Row />
-                </Table.Row>
+          <Table.Cell colSpan="2" collapsing>
+            <ul style={{ paddingLeft: 20 }}>
+              {responsibilities.map((responsibility) => (
+                <li key={responsibility}>{responsibility}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Row />
+        </Table.Row>
 
-                <Table.Row>
-                    <Table.Cell style={{ marginTop: "100px" }}
-                        textAlign="center"
-                        colSpan="4"
-                        collapsing>
-                        <h3>
-                            <Icon name="calendar"></Icon>Important Upcoming Dates
-                        </h3>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell style={{ background: "lightgrey" }}
-                        colSpan="2"
-                        collapsing>
-                        <h4>Description</h4>
-                    </Table.Cell>
-                    <Table.Cell style={{ background: "lightgrey" }}
-                        colSpan="2">
-                        <h4>Date</h4>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="2">
-                        <ul style={{
-                            padding: 0,
-                            listStyle: "none"
-                        }}>
-                            {importantDates.map((impDate) => (
-                                <li key={impDate.description}>
-                                    {impDate.description}</li>
-                            ))}
-                        </ul>
-                    </Table.Cell>
-                    <Table.Cell colSpan="2">
-                        <ul style={{
-                            padding: 0,
-                            listStyle: "none"
-                        }}>
-                            {importantDates.map((impDate) => (
-                                <li key={impDate.description}>
-                                    {impDate.importantDate}</li>
-                            ))}
-                        </ul>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row verticalAlign="top">
-                    <Table.Cell colSpan="2" collapsing>
-                        <h3>Personal Interests</h3>
-                        <ul style={{ paddingLeft: 10 }}>
-                            {personalInterests.map((interest) => (
-                                <li key={interest} >
-                                    {interest}</li>
-                            ))}
-                        </ul>
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <h3>Family Situation </h3>
-                        {familySituation}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <h3>Notes</h3>
-                        {notes}
-                    </Table.Cell>
-                </Table.Row>
-            </Table.Body>
-        </Table>
-    );
+        <Table.Row>
+          <Table.Cell
+            style={{ marginTop: "100px" }}
+            textAlign="center"
+            colSpan="4"
+            collapsing
+          >
+            <h3>
+              <Icon name="calendar"></Icon>Important Upcoming Dates
+            </h3>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell
+            style={{ background: "lightgrey" }}
+            colSpan="2"
+            collapsing
+          >
+            <h4>Description</h4>
+          </Table.Cell>
+          <Table.Cell style={{ background: "lightgrey" }} colSpan="2">
+            <h4>Date</h4>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell colSpan="2">
+            <ul
+              style={{
+                padding: 0,
+                listStyle: "none",
+              }}
+            >
+              {importantDates.map((impDate) => (
+                <li key={impDate.description}>{impDate.description}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Cell colSpan="2">
+            <ul
+              style={{
+                padding: 0,
+                listStyle: "none",
+              }}
+            >
+              {importantDates.map((impDate) => (
+                <li key={impDate.description}>{impDate.importantDate}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row verticalAlign="top">
+          <Table.Cell colSpan="2" collapsing>
+            <h3>Personal Interests</h3>
+            <ul style={{ paddingLeft: 10 }}>
+              {personalInterests.map((interest) => (
+                <li key={interest}>{interest}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <h3>Family Situation </h3>
+            {familySituation}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <h3>Notes</h3>
+            {notes}
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
 }

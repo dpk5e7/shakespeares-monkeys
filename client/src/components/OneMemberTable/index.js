@@ -1,4 +1,6 @@
+
 import { Table, Icon, Button } from "semantic-ui-react";
+
 
 export default function OneMemberTable({
   id,
@@ -18,87 +20,84 @@ export default function OneMemberTable({
   notes,
   importantDates,
 }) {
-  return (
-    <Table
-      style={{
-        border: "none",
-        width: "75%",
-        display: "block",
-        margin: "auto",
-      }}
-      celled
-      key={id}
-    >
-      <Table.Header>
-        <Button size="large">
-          <Icon name="print" />
-          Print!
-        </Button>
-        <Table.Row>
-          <Table.HeaderCell colSpan="4">
-            <h2>
-              <Icon name="user"></Icon>Team Member: {name}
-            </h2>
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        <Table.Row>
-          <Table.Cell
-            style={{ background: "lightgrey" }}
-            colSpan="4"
-            collapsing
-          >
-            <h3>Contact Info </h3>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell colSpan="1">
-            <h5>
-              <Icon name="mail" /> Email:{" "}
-            </h5>
-            {email}
-          </Table.Cell>
-          <Table.Cell colSpan="1" collapsing>
-            <h5>
-              <Icon name="phone" /> Phone:
-            </h5>
-            {phoneNumber}
-          </Table.Cell>
-          <Table.Cell colSpan="1" collapsing>
-            <h5>
-              <Icon name="home" /> Mailing Address:{" "}
-            </h5>
-            {mailingAddress}
-          </Table.Cell>
-          <Table.Cell colSpan="1" collapsing>
-            <br></br>
-            <h5>
-              <Icon name="emergency" /> EmergencyPOC:{" "}
-            </h5>
-            Name: {emergencyPOCName}
-            <br></br>
-            Relationship: {emergencyPOCRelationship}
-            <br></br>
-            Phone Number: {emergencyPOCPhoneNumber} <br></br>
-            {""}
-            <br></br>
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row style={{ background: "lightgrey" }}>
-          <Table.Cell colSpan="1" collapsing textAlign="center">
-            <h3>Experience </h3>
-          </Table.Cell>
-          <Table.Cell colSpan="1" collapsing textAlign="center">
-            <h3>Skills </h3>
-          </Table.Cell>
-          <Table.Cell colSpan="1" collapsing textAlign="center">
-            <h3>Training </h3>
-          </Table.Cell>
-          <Table.Cell colSpan="2" collapsing textAlign="center">
-            <h3>Responsibilities </h3>
-          </Table.Cell>
-        </Table.Row>
+
+    return (
+        <Table
+            style={{
+                border: "none",
+                width: "75%",
+                display: "block",
+                margin: "auto",
+            }}
+            celled
+            key={id}
+        >
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell colSpan="4">
+                        <h2>
+                            <Icon name="user"></Icon>Team Member: {name}
+                        </h2>
+                    </Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell
+                        style={{ background: "lightgrey" }}
+                        colSpan="4"
+                        collapsing
+                    >
+                        <h3>Contact Info </h3>
+                    </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                    <Table.Cell colSpan="1">
+                        <h5>
+                            <Icon name="mail" /> Email:{" "}
+                        </h5>
+                        {email}
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing>
+                        <h5>
+                            <Icon name="phone" /> Phone:
+                        </h5>
+                        {phoneNumber}
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing>
+                        <h5>
+                            <Icon name="home" /> Mailing Address:{" "}
+                        </h5>
+                        {mailingAddress}
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing>
+                        <br></br>
+                        <h5>
+                            <Icon name="emergency" /> EmergencyPOC:{" "}
+                        </h5>
+                        Name: {emergencyPOCName}
+                        <br></br>
+                        Relationship: {emergencyPOCRelationship}
+                        <br></br>
+                        Phone Number: {emergencyPOCPhoneNumber} <br></br>
+                        {""}
+                        <br></br>
+                    </Table.Cell>
+                </Table.Row>
+                <Table.Row style={{ background: "lightgrey" }}>
+                    <Table.Cell colSpan="1" collapsing textAlign="center">
+                        <h3>Experience </h3>
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing textAlign="center">
+                        <h3>Skills </h3>
+                    </Table.Cell>
+                    <Table.Cell colSpan="1" collapsing textAlign="center">
+                        <h3>Training </h3>
+                    </Table.Cell>
+                    <Table.Cell colSpan="2" collapsing textAlign="center">
+                        <h3>Responsibilities </h3>
+                    </Table.Cell>
+                </Table.Row>
 
         <Table.Row>
           <Table.Cell colSpan="" collasping>

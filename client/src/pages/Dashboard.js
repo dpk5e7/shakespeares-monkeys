@@ -8,7 +8,7 @@ import UpcomingDates from "../components/UpcomingDates";
 const Dashboard = () => {
   return (
     <>
-      <h1>Dashboard</h1>
+      <h1 className="dashboard">Dashboard</h1>
       <Card.Group>
         <Card>
           <Card.Content>

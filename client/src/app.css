@@ -1,7 +1,38 @@
+.ui.menu {
+    justify-content: space-evenly;
+}
+
+.ui.menu .item {
+    position: inherit;
+    /* border-left: 2px; */
+}
+
+.ui.menu:not(.vertical) .item {
+    border-left: 1px solid grey;
+}
+
+.ui.menu>.item:first-child {
+    border-left: 0;
+}
+
+.ui.cards {
+    justify-content: center;
+}
+
 @media only screen and (max-width: 622px) {
     .ui.cards {
         justify-content: center;
     }
+
+    .dashboard {
+        text-align: center;
+        border-bottom: 2px solid;
+        padding-bottom: 10px;
+    }
+    .ui.cards>.card {
+        margin-top: 20px;
+    }
+
 }
 
 @media only screen and (max-width: 525px) {
@@ -12,6 +43,17 @@
 
     .ui.menu.five.item .item {
         width: 100%;
+        border: 1px solid grey;
+    }
+
+    .ui.menu:not(.vertical) .item {
+        justify-content: center;
+        border-left: 0;
+        border-top: 1px solid grey;
+    }
+
+    .ui.menu>.item:first-child {
+        border-top: 0;
     }
 
 }

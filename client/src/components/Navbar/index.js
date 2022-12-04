@@ -24,7 +24,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Menu fluid widths={5}>
+      <Menu fluid size='large'>
         <Menu.Item>
           Team Handbook
         </Menu.Item>

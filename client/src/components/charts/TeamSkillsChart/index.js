@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export default function TeamSkillsChart() {
-  const { loading, error, data } = useQuery(GET_TEAM_SKILLS, {
+  const { loading, data } = useQuery(GET_TEAM_SKILLS, {
     fetchPolicy: "network-only",
   });
   const skillsData = data?.teamSkills || [];

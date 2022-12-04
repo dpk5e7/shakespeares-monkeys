@@ -1,6 +1,6 @@
 import React from "react";
-import { useState } from 'react'
-import { Button, Icon, Header, Modal, Form, Checkbox } from 'semantic-ui-react'
+// import { useState } from 'react'
+// import { Button, Icon, Header, Modal, Form, Checkbox } from 'semantic-ui-react'
 
 import SignupForm from "../components/SignupForm";
 

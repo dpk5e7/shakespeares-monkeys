@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Checkbox, Message } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
+
+import { useUserContext } from "../../utils/UserContext";
+import { LOGIN } from "../../utils/actions";
 
 // add apollo graphql
 import { useMutation } from "@apollo/client";
@@ -18,6 +22,11 @@ const SignupForm = () => {
 
   // add addUser mutation
   const [addUser] = useMutation(ADD_USER);
+
+  // add global state
+  const [state, dispatch] = useUserContext();
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -37,6 +46,19 @@ const SignupForm = () => {
         const { token, user } = data.addUser;
 
         Auth.login(token);
+
+        // set global state
+        dispatch({
+          type: LOGIN,
+          user: {
+            _id: user._id,
+            username: user.username,
+            is_admin: user.is_admin,
+            is_locked: user.is_locked,
+          },
+        });
+
+        navigate("/");
       } catch (err) {
         setErrorMessage(err.Message);
       }

@@ -3,28 +3,35 @@ import { useParams } from "react-router-dom";
 import { GET_ONE_TEAM_MEMBER } from "../utils/queries";
 import { Table } from "semantic-ui-react";
 import OneMemberTable from "../components/OneMemberTable";
-import { Button, Icon } from "semantic-ui-react"
+import { Button, Icon } from "semantic-ui-react";
 
 const PrintSingleMember = () => {
+  
   const print = () => {
-    window.print()
-  }
+    window.print();
+  };
+
   // const { id } variable must match the route in App.js
   const { id } = useParams();
+  
   const { loading, data } = useQuery(GET_ONE_TEAM_MEMBER, {
     variables: { oneTeamMemberId: id },
   });
 
   const oneTeamMember = data?.oneTeamMember || { email: "none" };
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
     <>
-    <div><Button onClick={print} size="large">
-                <Icon name="print" />
-                Print
-            </Button></div>
+      <div>
+        <Button onClick={print} size="large">
+          <Icon name="print" />
+          Print
+        </Button>
+      </div>
       <Table>
         <OneMemberTable
           id={oneTeamMember.id}

@@ -2,7 +2,7 @@ import PrintTeam from './PrintTeam';
 import ReactToPrint from 'react-to-print';
 import React from 'react'
 
-class PrintExport extends React.PureComponent {
+const PrintExport = () => {
   render() {
     return (
       <div>
@@ -14,7 +14,7 @@ class PrintExport extends React.PureComponent {
           }}
           content={() => this.componentRef}
         />
-        <PrintTeam ref={el => (this.componentRef = el)} />
+        <TeamMemberTable ref={el => (this.componentRef = el)} />
       </div>
     );
   }

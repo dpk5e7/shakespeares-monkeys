@@ -107,7 +107,8 @@ export default function OneMemberTable({
                 </Table.Row>
             
                 <Table.Row>
-                    <Table.Cell style={{ marginTop: "100px"}}textAlign="center" colSpan="4" collapsing><h3 ><Icon name="calendar"></Icon>Important Upcoming Dates </h3>
+                    <Table.Cell style={{ marginTop: "100px"}}textAlign="center" colSpan="4" collapsing><h3 >
+                        <Icon name="calendar"></Icon>Important Upcoming Dates </h3>
                     </Table.Cell>
                 </Table.Row>
                     <Table.Row>
@@ -133,9 +134,9 @@ export default function OneMemberTable({
                             </ul>
                         </Table.Cell>
                     </Table.Row>
-                <Table.Row>
+                <Table.Row verticalAlign="top">
                     <Table.Cell colSpan="2" collapsing>
-                      <br></br>  <h3>Personal Interests</h3>
+                       <h3>Personal Interests</h3>
                         <ul style={{ paddingLeft: 10 }}>
                             {personalInterests.map((interest) => (
                                 <li key={interest} >

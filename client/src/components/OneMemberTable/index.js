@@ -1,4 +1,6 @@
-import { Table, Icon, Button, Container } from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 export default function OneMemberTable({
     id,
@@ -30,10 +32,6 @@ export default function OneMemberTable({
             key={id}
         >
             <Table.Header>
-                <Button size="large">
-                    <Icon name="print" />
-                    Print!
-                </Button>
                 <Table.Row>
                     <Table.HeaderCell colSpan="4">
                         <h2>

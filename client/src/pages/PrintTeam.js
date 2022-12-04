@@ -2,10 +2,13 @@ import { useQuery } from "@apollo/client";
 import { GET_MY_TEAM } from "../utils/queries";
 import TeamMemberTable from "../components/TeamMemberTable";
 import { Table } from "semantic-ui-react";
-import { Icon } from "semantic-ui-react";
+import { Icon, Button } from "semantic-ui-react";
 
 const PrintTeam = () => {
 
+  const print = () => {
+    window.print()
+}
   const { loading, error, data } = useQuery(GET_MY_TEAM);
   const teamData = data?.team || [];
   if (loading) {
@@ -13,6 +16,10 @@ const PrintTeam = () => {
   }
   return (
     <>
+    <div><Button onClick={print} size="large">
+                <Icon name="print" />
+                Print Team
+            </Button></div>
         <Table>
           {teamData.map((teamMember) => (
             <TeamMemberTable

@@ -14,14 +14,9 @@ export default function TeamMemberTable({
     training,
     mailingAddress,
 }) {
-
+    
     return (
         <>
-            <div><Button size="large">
-                <Icon name="print" />
-                Print Team
-            </Button></div>
-            
             <Table celled key={id}>
                 <Table.Header>
                     <Table.Row>
@@ -63,8 +58,11 @@ export default function TeamMemberTable({
                     </Table.Row>
                     <Table.Row>
                     </Table.Row>
+
+
                     <Table.Row style={{ background: "lightgrey" }} rowSpan="1">
                         <Table.Cell collapsing><h3>Experience</h3>
+            
                         </Table.Cell>
                         <Table.Cell collapsing>
                             <h3>Skills </h3>
@@ -77,7 +75,10 @@ export default function TeamMemberTable({
                         </Table.Cell>
                     </Table.Row>
                     <Table.Row>
+
+                        {/* if (!experience) { } */}
                         <Table.Cell colSpan="1" collasping>
+
                             {experience}
                         </Table.Cell>
                         <Table.Cell colSpan="1" collapsing>

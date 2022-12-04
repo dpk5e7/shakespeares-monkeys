@@ -33,10 +33,7 @@ const PrintSingleMember = () => {
           experience={oneTeamMember.experience}
           training={oneTeamMember.training}
           familySituation={oneTeamMember.familySituation}
-          importantDates={oneTeamMember.importantDates[0].importantDate}
-          importantDatesDescription={
-            oneTeamMember.importantDates[1].description
-          }
+          importantDates={oneTeamMember.importantDates}
           personalInterests={oneTeamMember.personalInterests}
           notes={oneTeamMember.notes}
         />

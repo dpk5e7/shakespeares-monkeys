@@ -21,6 +21,8 @@ export default function OneMemberTable({
     importantDates,
     importantDatesDescription,
 }) {
+
+
     return (
         <div style={{}}>
         <Table style={{ border: "none", width: "75%", display: "block", margin: "auto"}} celled key={id}>
@@ -118,17 +120,28 @@ export default function OneMemberTable({
                     </Table.Row>
                     <Table.Row>
                         <Table.Cell colSpan="2">
-                            {importantDatesDescription}
+                        <ul style={{padding: 0,listStyle: "none" }}> {importantDates.map((impDate) => (
+                                <li key={impDate.description}>{impDate.description}</li>
+                            ))}    
+                            </ul>
                         </Table.Cell>
                         <Table.Cell colSpan="2">
-                            {importantDates}
+                            <ul style={{ padding: 0, listStyle: "none" }}> 
+                            {importantDates.map((impDate) => (
+                                <li key={impDate.description}>{impDate.importantDate}</li>
+                            ))}    
+                            </ul>
                         </Table.Cell>
                     </Table.Row>
-                
                 <Table.Row>
                     <Table.Cell colSpan="2" collapsing>
-                        <h3>Personal Interests</h3>
-                        {personalInterests}
+                      <br></br>  <h3>Personal Interests</h3>
+                        <ul style={{ paddingLeft: 10 }}>
+                            {personalInterests.map((interest) => (
+                                <li key={interest} >
+                                    {interest}</li>
+                            ))}
+                        </ul>
                     </Table.Cell>
                     <Table.Cell colSpan="1" collapsing>
                         <h3>Family Situation </h3>

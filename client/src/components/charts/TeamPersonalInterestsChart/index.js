@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 export default function TeamPersonalInterestsChart() {
-  const { loading, error, data } = useQuery(GET_TEAM_PERSONAL_INTERESTS, {
+  const { loading, data } = useQuery(GET_TEAM_PERSONAL_INTERESTS, {
     fetchPolicy: "network-only",
   });
   const interestsData = data?.teamPersonalInterests || [];
@@ -42,7 +42,7 @@ export default function TeamPersonalInterestsChart() {
     labels: interestsData.labels,
     datasets: [
       {
-        label: "Personal Interests",
+        label: "# of Team Members",
         data: interestsData.data,
         backgroundColor: backgroundColors,
         borderWidth: 1,

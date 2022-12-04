@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Container } from "semantic-ui-react";
 
 // add apollo graphql
 import { useMutation } from "@apollo/client";
@@ -62,7 +62,7 @@ const AddTeamMember = () => {
   };
 
   return (
-    <div className="teamInformation">
+    <Container>
       <Form onSubmit={handleFormSubmit}>
         <Header>Contact Info</Header>
         <Form.Group>
@@ -130,21 +130,23 @@ const AddTeamMember = () => {
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
-        <Form.Button primary center disabled={!inputs.name}>
-          Submit
-        </Form.Button>
-        {successMessage && (
-          <Message positive>
-            <Message.Header>{successMessage}</Message.Header>
-          </Message>
-        )}
-        {errorMessage && (
-          <Message negative>
-            <Message.Header>{errorMessage}</Message.Header>
-          </Message>
-        )}
+        <Form.Group inline>
+          <Form.Button primary center disabled={!inputs.name}>
+            Submit
+          </Form.Button>
+          {successMessage && (
+            <Message positive>
+              <Message.Header>{successMessage}</Message.Header>
+            </Message>
+          )}
+          {errorMessage && (
+            <Message negative>
+              <Message.Header>{errorMessage}</Message.Header>
+            </Message>
+          )}
+        </Form.Group>
       </Form>
-    </div>
+    </Container>
   );
 };
 

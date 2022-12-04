@@ -1,6 +1,4 @@
-import { Table } from "semantic-ui-react";
-import { Icon } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
+import { Table, Icon, Button, Container } from "semantic-ui-react";
 
 export default function OneMemberTable({
     id,

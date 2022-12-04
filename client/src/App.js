@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// import css
+import './app.css';
+
 // printing Export code
 import ReactToPrint from "react-to-print";
 import { useRef } from "react";
@@ -35,9 +38,6 @@ import RequireAdmin from "./components/RequireAdmin";
 // import Global State User Context
 import { UserProvider } from "./utils/UserContext";
 import { Container } from "semantic-ui-react";
-
-// import css
-import './';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

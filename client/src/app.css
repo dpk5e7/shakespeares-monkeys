@@ -1,7 +1,17 @@
-.navBar {
-    display: block;
+@media only screen and (max-width: 622px) {
+    .ui.cards {
+        justify-content: center;
+    }
 }
 
-.navLinks {
-    width: 100%;
+@media only screen and (max-width: 525px) {
+
+    .ui.menu {
+        display: block;
+    }
+
+    .ui.menu.five.item .item {
+        width: 100%;
+    }
+
 }

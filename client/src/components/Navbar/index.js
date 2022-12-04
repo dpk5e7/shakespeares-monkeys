@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 import { useUserContext } from "../../utils/UserContext";
@@ -22,34 +22,45 @@ const NavBar = () => {
     window.location.assign("/login");
   };
 
+  let linkStyle = {
+    color: "black",
+  };
+
   return (
     <>
-      <Menu fluid widths={5} className="navBar">
-        <Menu.Item>
+      <Menu fluid stackable>
+        <Menu.Item header>
+          <Icon name="users" />
+          {Auth.loggedIn() && state.user && <>{`${state.user.username}'s `}</>}
           Team Handbook
         </Menu.Item>
         {Auth.loggedIn() ? (
           <>
-            <Menu.Item>
-              {state.user && <>{state.user.username}</>}
-            </Menu.Item>
-            <Menu.Item>
-              <Link to="/">Dashboard</Link>
+            <Menu.Item link>
+              <Link to="/" style={linkStyle}>
+                Dashboard
+              </Link>
             </Menu.Item>
 
-            <Menu.Item>
-              <Link to="/team">Team</Link>
+            <Menu.Item link>
+              <Link to="/team" style={linkStyle}>
+                Team
+              </Link>
             </Menu.Item>
 
             {state.user.is_admin && (
-              <Menu.Item>
-                <Link to="/userManagement">User Management</Link>
+              <Menu.Item link>
+                <Link to="/userManagement" style={linkStyle}>
+                  User Management
+                </Link>
               </Menu.Item>
             )}
-            <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
+            <Menu.Item onClick={handleLogout} link position="right">
+              Logout
+            </Menu.Item>
           </>
         ) : (
-          <Menu.Item as="a" href="/login">
+          <Menu.Item as="a" href="/login" position="right">
             Login
           </Menu.Item>
         )}

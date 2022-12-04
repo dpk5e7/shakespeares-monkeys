@@ -1,20 +1,24 @@
-import React, { useRef } from 'react';
-// import { useReactToPrint } from 'react-to-print';
+import PrintTeam from './PrintTeam';
+import ReactToPrint from 'react-to-print';
+import React from 'react'
 
-import { Export } from './Export';
+class PrintExport extends React.PureComponent {
+  render() {
+    return (
+      <div>
+        <ReactToPrint
+          trigger={() => {
+            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
+            // to the root node of the returned component as it will be overwritten.
+            return <a href="#">Print this out!</a>;
+          }}
+          content={() => this.componentRef}
+        />
+        <PrintTeam ref={el => (this.componentRef = el)} />
+      </div>
+    );
+  }
+}
 
-const PrintExport = () => {
-  const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
 
-  return (
-    <div>
-      <Export ref={componentRef} />
-      <button onClick={handlePrint}>Print this out!</button>
-    </div>
-  );
-};
-
-export default PrintExport;
+export default PrintExport

@@ -1,119 +1,203 @@
 import { Table, Icon, Button } from "semantic-ui-react";
-// import ExportSingleMember from "../../pages/ExportSingleMember";
-import ExportDates from "../ExportDates"
 
-export default function TeamMemberTable({
-    id,
-    name,
-    email,
-    phoneNumber,
-    emergencyPOCName,
-    emergencyPOCPhoneNumber,
-    emergencyPOCRelationship,
-    experience,
-    skills,
-    responsibilities,
-    training,
-    importantDates,
-    importantDatesDescription,
+export default function OneMemberTable({
+  id,
+  name,
+  email,
+  phoneNumber,
+  mailingAddress,
+  emergencyPOCName,
+  emergencyPOCPhoneNumber,
+  emergencyPOCRelationship,
+  experience,
+  skills,
+  responsibilities,
+  training,
+  familySituation,
+  personalInterests,
+  notes,
+  importantDates,
 }) {
-    // const oneMemberLink = `/oneTeamMember/${id}`;
-    const oneMemberLink = `/oneTeamMember/${id}`;
+  return (
+    <Table
+      style={{
+        border: "none",
+        width: "75%",
+        display: "block",
+        margin: "auto",
+      }}
+      celled
+      key={id}
+    >
+      <Table.Header>
+        <Button size="large">
+          <Icon name="print" />
+          Print!
+        </Button>
+        <Table.Row>
+          <Table.HeaderCell colSpan="4">
+            <h2>
+              <Icon name="user"></Icon>Team Member: {name}
+            </h2>
+          </Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <Table.Cell
+            style={{ background: "lightgrey" }}
+            colSpan="4"
+            collapsing
+          >
+            <h3>Contact Info </h3>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell colSpan="1">
+            <h5>
+              <Icon name="mail" /> Email:{" "}
+            </h5>
+            {email}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <h5>
+              <Icon name="phone" /> Phone:
+            </h5>
+            {phoneNumber}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <h5>
+              <Icon name="home" /> Mailing Address:{" "}
+            </h5>
+            {mailingAddress}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <br></br>
+            <h5>
+              <Icon name="emergency" /> EmergencyPOC:{" "}
+            </h5>
+            Name: {emergencyPOCName}
+            <br></br>
+            Relationship: {emergencyPOCRelationship}
+            <br></br>
+            Phone Number: {emergencyPOCPhoneNumber} <br></br>
+            {""}
+            <br></br>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row style={{ background: "lightgrey" }}>
+          <Table.Cell colSpan="1" collapsing textAlign="center">
+            <h3>Experience </h3>
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing textAlign="center">
+            <h3>Skills </h3>
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing textAlign="center">
+            <h3>Training </h3>
+          </Table.Cell>
+          <Table.Cell colSpan="2" collapsing textAlign="center">
+            <h3>Responsibilities </h3>
+          </Table.Cell>
+        </Table.Row>
 
-    return (
-        <Table celled key={id}>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell textAlign="center" colSpan="3"><h2>Team Member: {name}</h2></Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
-            <Table.Body>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing><h3>Contact Info </h3>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell>
-                        <h5><Icon name="mail" /> Email: </h5>
-                        {email}
-                    </Table.Cell>
-                    <Table.Cell collapsing>
-                        <h5><Icon name="phone" /> Phone:</h5>
-                        {phoneNumber}
-                    </Table.Cell>
-                    <Table.Cell collapsing>
-                        <h5><Icon name="emergency" /> EmergencyPOC: </h5>
-                        Name: {emergencyPOCName} <br></br>
-                        Relationship: {emergencyPOCRelationship}<br></br>
-                        Phone Number: {emergencyPOCPhoneNumber}
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                <Table.Cell colSpan="3" collapsing><h3>Important Upcoming Dates </h3>
-                <ExportDates />
-                </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing><h3>Experience </h3>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" />Number of Years at Company: { }
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" /> Training: <br></br>
-                        {training}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collasping>
-                        <Icon name="calendar outline" /> Past Employment: <br></br>
-                        {experience}
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing>
-                        <h3>Skills </h3>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 1: <br></br>
-                        {skills}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 2
+        <Table.Row>
+          <Table.Cell colSpan="" collasping>
+            {experience}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <ul style={{ paddingLeft: 20 }}>
+              {skills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Cell colSpan="1" collasping>
+            <ul style={{ paddingLeft: 20 }}>
+              {training.map((train) => (
+                <li key={train}>{train}</li>
+              ))}
+            </ul>
+          </Table.Cell>
 
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Skill 3
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="3" collapsing backgroundColor="lightblue">
-                        <h3>Responsbilities </h3>
-                    </Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 1: <br></br>
-                        {responsibilities}
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 2
-                    </Table.Cell>
-                    <Table.Cell colSpan="1" collapsing>
-                        <Icon name="cog" /> Responsibility 3
-                    </Table.Cell>
-                </Table.Row>
-            </Table.Body>
-            <Button compact primary icon as="a" href={oneMemberLink}>
-        <Icon name="male" />
-      </Button>
-        </Table>
-    );
+          <Table.Cell colSpan="2" collapsing>
+            <ul style={{ paddingLeft: 20 }}>
+              {responsibilities.map((responsibility) => (
+                <li key={responsibility}>{responsibility}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Row />
+        </Table.Row>
+
+        <Table.Row>
+          <Table.Cell
+            style={{ marginTop: "100px" }}
+            textAlign="center"
+            colSpan="4"
+            collapsing
+          >
+            <h3>
+              <Icon name="calendar"></Icon>Important Upcoming Dates
+            </h3>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell
+            style={{ background: "lightgrey" }}
+            colSpan="2"
+            collapsing
+          >
+            <h4>Description</h4>
+          </Table.Cell>
+          <Table.Cell style={{ background: "lightgrey" }} colSpan="2">
+            <h4>Date</h4>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell colSpan="2">
+            <ul
+              style={{
+                padding: 0,
+                listStyle: "none",
+              }}
+            >
+              {importantDates.map((impDate) => (
+                <li key={impDate.description}>{impDate.description}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Cell colSpan="2">
+            <ul
+              style={{
+                padding: 0,
+                listStyle: "none",
+              }}
+            >
+              {importantDates.map((impDate) => (
+                <li key={impDate.description}>{impDate.importantDate}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+        </Table.Row>
+        <Table.Row verticalAlign="top">
+          <Table.Cell colSpan="2" collapsing>
+            <h3>Personal Interests</h3>
+            <ul style={{ paddingLeft: 10 }}>
+              {personalInterests.map((interest) => (
+                <li key={interest}>{interest}</li>
+              ))}
+            </ul>
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <h3>Family Situation </h3>
+            {familySituation}
+          </Table.Cell>
+          <Table.Cell colSpan="1" collapsing>
+            <h3>Notes</h3>
+            {notes}
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
 }
-
-
-
-
-

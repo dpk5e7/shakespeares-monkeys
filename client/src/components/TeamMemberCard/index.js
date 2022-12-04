@@ -10,12 +10,12 @@ export default function TeamMemberCard({
   deleteTeamMember,
 }) {
   const editLink = `/editTeamMember/${id}`;
-  const exportLink = `/oneTeamMember/${id}`;
+  const printLink = `/printTeamMember/${id}`;
 
   const navigate = useNavigate();
 
   return (
-    <Card key={id}>
+    <Card raised key={id}>
       <Card.Content>
         <Card.Header>{name}</Card.Header>
         <Card.Description>Email: {email}</Card.Description>
@@ -26,7 +26,7 @@ export default function TeamMemberCard({
             <Button compact primary icon onClick={() => navigate(editLink)}>
               <Icon name="edit outline" />
             </Button>
-            <Button compact icon onClick={() => navigate(exportLink)}>
+            <Button compact icon onClick={() => navigate(printLink)}>
               <Icon name="print" />
             </Button>
           <Button

@@ -8,12 +8,14 @@
   {
     "username": "Parker",
     "email": "p@r.com",
-    "password": "2wsxCDE#"
+    "password": "2wsxCDE#",
+    "is_admin": true
   },
   {
     "username": "Nathan",
     "email": "n@a.com",
-    "password": "3edcVFR$"
+    "password": "3edcVFR$",
+    "is_admin": true
   },
   {
     "username": "Rod",

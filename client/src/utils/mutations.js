@@ -7,6 +7,8 @@ export const ADD_USER = gql`
       user {
         _id
         username
+        is_admin
+        is_locked
       }
     }
   }
@@ -54,6 +56,12 @@ export const EDIT_TEAM_MEMBER = gql`
     $pocName: String
     $pocPhoneNumber: String
     $pocRelationship: String
+    $familySituation: String
+    $notes: String
+    $skills: [String]
+    $responsibilities: [String]
+    $personalInterests: [String]
+    $dates: [String]
   ) {
     editTeamMember(
       id: $id
@@ -64,6 +72,12 @@ export const EDIT_TEAM_MEMBER = gql`
       pocName: $pocName
       pocPhoneNumber: $pocPhoneNumber
       pocRelationship: $pocRelationship
+      familySituation: $familySituation
+      notes: $notes
+      skills: $skills
+      responsibilities: $responsibilities
+      personalInterests: $personalInterests
+      dates: $dates
     ) {
       message
       user {

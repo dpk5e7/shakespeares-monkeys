@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Icon, Grid, Container } from "semantic-ui-react";
+import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
-import { useQuery, useMutation } from "@apollo/client";
-import { GET_MY_TEAM } from "../../utils/queries";
+import { useMutation } from "@apollo/client";
 import { EDIT_TEAM_MEMBER } from "../../utils/mutations";
 
 const EditTeamMemberForm = (props) => {
@@ -22,12 +22,24 @@ const EditTeamMemberForm = (props) => {
     pocRelationship: props.pocRelationship,
   });
 
+  // Text Area State
+  const [familySituation, setFamilySituation] = useState(props.familySituation);
+  const [notes, setNotes] = useState(props.notes);
+
+  // Tag State
+  const [skills, setSkills] = useState(props.skills);
+  const [responsibilities, setResponsibilities] = useState(
+    props.responsibilities
+  );
+  const [personalInterests, setPersonalInterests] = useState(
+    props.personalInterests
+  );
+
+  // Important Dates State
+  const [importantDates, setImportantDates] = useState(props.importantDates);
+
   // add addUser mutation
   const [editTeamMember] = useMutation(EDIT_TEAM_MEMBER);
-
-  // This is just to refresh the team cache
-  const { loading, error, data, refetch } = useQuery(GET_MY_TEAM);
-  const teamData = data?.team || [];
 
   // logic goes here
   const handleChange = (event) => {
@@ -36,20 +48,64 @@ const EditTeamMemberForm = (props) => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
+  const handleFamilySituationChange = (event) => {
+    setFamilySituation(event.target.value);
+  };
+
+  const handleNotesChange = (event) => {
+    setNotes(event.target.value);
+  };
+
+  const handleImportantDatesChange = (event, index) => {
+    let data = [...importantDates];
+    data[index][event.target.name] = event.target.value;
+    setImportantDates(data);
+  };
+
+  const addImportantDate = () => {
+    let object = {
+      importantDate: "",
+      description: "",
+    };
+
+    setImportantDates([...importantDates, object]);
+  };
+
+  const removeImportantDate = (index) => {
+    let data = [...importantDates];
+    data.splice(index, 1);
+    setImportantDates(data);
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     if (inputs.name) {
       try {
+
+        // put important dates in a format that can be sent through apollo graphql
+        const dates = [];
+        for (let impDate of importantDates) {
+          dates.push(impDate.importantDate);
+          dates.push(impDate.description);
+        }
+
         // save to the database
         // call editTeamMember mutation
         const { data } = await editTeamMember({
-          variables: { ...inputs },
+          variables: {
+            ...inputs,
+            familySituation,
+            notes,
+            skills,
+            responsibilities,
+            personalInterests,
+            dates,
+          },
         });
 
         setErrorMessage("");
         setSuccessMessage(data?.editTeamMember.message);
-        refetch(); // refresh the my team cache
       } catch (err) {
         setErrorMessage(err.message);
         setSuccessMessage("");
@@ -58,9 +114,9 @@ const EditTeamMemberForm = (props) => {
   };
 
   return (
-    <div className="teamInformation">
+    <Container>
       <Form onSubmit={handleFormSubmit}>
-        <Header>Contact Info</Header>
+        <Header size="medium">Contact Info</Header>
         <Form.Group>
           <Form.Field
             label="Name:"
@@ -96,9 +152,10 @@ const EditTeamMemberForm = (props) => {
             onChange={handleChange}
           ></Form.Field>
         </Form.Group>
+
         <Divider></Divider>
 
-        <Header>Emergency POC</Header>
+        <Header size="medium">Emergency POC</Header>
         <Form.Group>
           <Form.Field
             label="Name:"
@@ -125,22 +182,130 @@ const EditTeamMemberForm = (props) => {
             onChange={handleChange}
           ></Form.Field>
         </Form.Group>
+
         <Divider></Divider>
-        <Form.Button primary center>
-          Submit
-        </Form.Button>
-        {successMessage && (
-          <Message positive>
-            <Message.Header>{successMessage}</Message.Header>
-          </Message>
-        )}
-        {errorMessage && (
-          <Message negative>
-            <Message.Header>{errorMessage}</Message.Header>
-          </Message>
-        )}
+
+        <Header size="medium">Skills</Header>
+
+        <TagsInput
+          value={skills}
+          onChange={setSkills}
+          name="skills"
+          placeHolder="enter skills"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Divider></Divider>
+
+        <Header size="medium">Responsibilities</Header>
+        <TagsInput
+          value={responsibilities}
+          onChange={setResponsibilities}
+          name="responsibilities"
+          placeHolder="enter responsibilities"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Divider></Divider>
+        <Header size="medium">Personal Details</Header>
+
+        <Header size="tiny">Interests</Header>
+        <TagsInput
+          value={personalInterests}
+          onChange={setPersonalInterests}
+          name="personalInterests"
+          placeHolder="enter personal interests"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Header size="tiny">Important Dates</Header>
+        <Grid
+          columns="three"
+          stretched
+          verticalAlign="middle"
+          padded="vertically"
+        >
+          {importantDates.map((impDate, index) => {
+            return (
+              <Grid.Row key={index}>
+                <Grid.Column>
+                  <Form.Input
+                    name="importantDate"
+                    placeholder="Important Date"
+                    onChange={(event) =>
+                      handleImportantDatesChange(event, index)
+                    }
+                    value={impDate.importantDate}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Input
+                    name="description"
+                    placeholder="Description"
+                    onChange={(event) =>
+                      handleImportantDatesChange(event, index)
+                    }
+                    value={impDate.description}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  <Form.Button
+                    compact
+                    negative
+                    icon
+                    onClick={() => removeImportantDate(index)}
+                  >
+                    <Icon name="trash alternate outline" />
+                  </Form.Button>
+                </Grid.Column>
+              </Grid.Row>
+            );
+          })}
+
+          <Grid.Row>
+            <Grid.Column width="3">
+              <Form.Button positive compact onClick={addImportantDate}>
+                <Icon name="add" />
+                New Important Date
+              </Form.Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+        <Form.TextArea
+          label="Family Situation"
+          name="familySituation"
+          value={familySituation}
+          onChange={handleFamilySituationChange}
+        />
+
+        <Form.TextArea
+          label="Notes"
+          name="notes"
+          value={notes}
+          onChange={handleNotesChange}
+        />
+
+        <Divider></Divider>
+
+        <Form.Group inline>
+          <Form.Button primary center disabled={!inputs.name}>
+            Submit
+          </Form.Button>
+
+          {successMessage && (
+            <Message positive>
+              <Message.Header>{successMessage}</Message.Header>
+            </Message>
+          )}
+          {errorMessage && (
+            <Message negative>
+              <Message.Header>{errorMessage}</Message.Header>
+            </Message>
+          )}
+        </Form.Group>
       </Form>
-    </div>
+    </Container>
   );
 };
 

@@ -1,12 +1,14 @@
 import React from "react";
-
+import { Header, Container } from "semantic-ui-react";
 import UserTable from "../components/UserTable";
 
 const UserManagement = () => {
   return (
     <>
-      <h1>User Management</h1>
-      <UserTable />
+      <Container>
+        <Header size="large">User Management</Header>
+        <UserTable />
+      </Container>
     </>
   );
 };

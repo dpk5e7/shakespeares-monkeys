@@ -35,8 +35,8 @@ if (loading) {
         experience={oneTeamMember.experience}
         training={oneTeamMember.training}
         familySituation={oneTeamMember.familySituation}
-        importantDates={oneTeamMember.importantDates.importantDate}
-        importantDatesDescription={oneTeamMember.importantDates.description}
+        importantDates={oneTeamMember.importantDates[0].importantDate}
+        importantDatesDescription={oneTeamMember.importantDates[1].description}
         personalInterests={oneTeamMember.personalInterests}
         notes={oneTeamMember.notes}
         />

@@ -29,7 +29,7 @@ export default function TeamResponsibilitiesChart() {
     labels: responsibilitiesData.labels,
     datasets: [
       {
-        label: "# of Votes",
+        label: "# of Team Members",
         data: responsibilitiesData.data,
         backgroundColor: backgroundColors,
         borderColor: borderColors,

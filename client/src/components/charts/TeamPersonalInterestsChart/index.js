@@ -42,7 +42,7 @@ export default function TeamPersonalInterestsChart() {
     labels: interestsData.labels,
     datasets: [
       {
-        label: "Personal Interests",
+        label: "# of Team Members",
         data: interestsData.data,
         backgroundColor: backgroundColors,
         borderWidth: 1,

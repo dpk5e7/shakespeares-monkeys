@@ -264,7 +264,7 @@ const EditTeamMemberForm = (props) => {
 
           <Grid.Row>
             <Grid.Column width="3">
-              <Form.Button positive compact onClick={addImportantDate}>
+              <Form.Button positive compact type="button" onClick={addImportantDate}>
                 <Icon name="add" />
                 New Important Date
               </Form.Button>

@@ -137,7 +137,6 @@ const AddTeamMember = () => {
           {successMessage && (
             <Message positive>
               <Message.Header>{successMessage}</Message.Header>
-              <Button href="/">Return to Dashboard</Button>
             </Message>
             
           )}

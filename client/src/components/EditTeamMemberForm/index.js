@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message, Icon, Grid, Container } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Icon, Grid, Container, Button } from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
@@ -296,6 +296,8 @@ const EditTeamMemberForm = (props) => {
           {successMessage && (
             <Message positive>
               <Message.Header>{successMessage}</Message.Header>
+              <Button href="/">Return to Dashboard</Button>
+
             </Message>
           )}
           {errorMessage && (

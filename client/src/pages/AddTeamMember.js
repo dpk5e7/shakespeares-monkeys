@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message, Container } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Container, Button } from "semantic-ui-react";
 
 // add apollo graphql
 import { useMutation } from "@apollo/client";
@@ -137,7 +137,9 @@ const AddTeamMember = () => {
           {successMessage && (
             <Message positive>
               <Message.Header>{successMessage}</Message.Header>
+              <Button href="/">Return to Dashboard</Button>
             </Message>
+            
           )}
           {errorMessage && (
             <Message negative>

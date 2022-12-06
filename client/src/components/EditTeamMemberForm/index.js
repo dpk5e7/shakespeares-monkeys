@@ -42,6 +42,7 @@ const EditTeamMemberForm = (props) => {
   const [personalInterests, setPersonalInterests] = useState(
     props.personalInterests
   );
+  const [training, setTraining] = useState(props.training);
 
   // Important Dates State
   const [importantDates, setImportantDates] = useState(props.importantDates);
@@ -107,6 +108,7 @@ const EditTeamMemberForm = (props) => {
             skills,
             responsibilities,
             personalInterests,
+            training,
             dates,
           },
         });
@@ -193,7 +195,6 @@ const EditTeamMemberForm = (props) => {
         <Divider></Divider>
 
         <Header size="medium">Skills</Header>
-
         <TagsInput
           value={skills}
           onChange={setSkills}
@@ -202,14 +203,21 @@ const EditTeamMemberForm = (props) => {
         />
         <em>press enter or comma to add new tag</em>
 
-        <Divider></Divider>
-
         <Header size="medium">Responsibilities</Header>
         <TagsInput
           value={responsibilities}
           onChange={setResponsibilities}
           name="responsibilities"
           placeHolder="enter responsibilities"
+        />
+        <em>press enter or comma to add new tag</em>
+
+        <Header size="medium">Training</Header>
+        <TagsInput
+          value={training}
+          onChange={setTraining}
+          name="training"
+          placeHolder="enter training"
         />
         <em>press enter or comma to add new tag</em>
 

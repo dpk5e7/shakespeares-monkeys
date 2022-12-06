@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import css
 import './app.css';
 
-// printing Export code
-import ReactToPrint from "react-to-print";
-import { useRef } from "react";
+
 
 // import apollo graphql
 import {

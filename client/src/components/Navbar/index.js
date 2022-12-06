@@ -28,7 +28,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Menu fluid stackable size='large'>
+      <Menu fluid stackable size="large">
         <Menu.Item header>
           <Icon name="users" />
           {Auth.loggedIn() && state.user && <>{`${state.user.username}'s `}</>}

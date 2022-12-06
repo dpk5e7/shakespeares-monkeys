@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message, Icon, Grid, Container, Button } from "semantic-ui-react";
+import {
+  Form,
+  Header,
+  Divider,
+  Message,
+  Icon,
+  Grid,
+  Container,
+} from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
 // add apollo graphql
@@ -82,7 +90,6 @@ const EditTeamMemberForm = (props) => {
 
     if (inputs.name) {
       try {
-
         // put important dates in a format that can be sent through apollo graphql
         const dates = [];
         for (let impDate of importantDates) {
@@ -253,6 +260,7 @@ const EditTeamMemberForm = (props) => {
                     compact
                     negative
                     icon
+                    type="button"
                     onClick={() => removeImportantDate(index)}
                   >
                     <Icon name="trash alternate outline" />
@@ -264,7 +272,12 @@ const EditTeamMemberForm = (props) => {
 
           <Grid.Row>
             <Grid.Column width="3">
-              <Form.Button positive compact type="button" onClick={addImportantDate}>
+              <Form.Button
+                positive
+                compact
+                type="button"
+                onClick={addImportantDate}
+              >
                 <Icon name="add" />
                 New Important Date
               </Form.Button>

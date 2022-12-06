@@ -9,7 +9,9 @@ import UpcomingDates from "../components/UpcomingDates";
 const Dashboard = () => {
   return (
     <>
-      <h1 className="dashboard">Dashboard</h1>
+      <Header size="large" className="header">
+        Dashboard
+      </Header>
       <Card.Group>
         <Card>
           <Card.Content>
@@ -25,6 +27,14 @@ const Dashboard = () => {
           </Card.Content>
           <Card.Content>
             <TeamResponsibilitiesChart />
+          </Card.Content>
+        </Card>
+        <Card>
+          <Card.Content>
+            <Card.Header>Training</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <TeamTrainingChart />
           </Card.Content>
         </Card>
         <Card>

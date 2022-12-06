@@ -26,7 +26,9 @@ const Team = () => {
   return (
     <>
       <Container>
-        <Header size="large">My Team</Header>
+        <Header size="large" className="header">
+          My Team
+        </Header>
         <Link to="/AddTeamMember">
           <Button compact positive icon>
             <Icon name="add" />

@@ -6,7 +6,9 @@ const UserManagement = () => {
   return (
     <>
       <Container>
-        <Header size="large">User Management</Header>
+        <Header size="large" className="header">
+          User Management
+        </Header>
         <UserTable />
       </Container>
     </>

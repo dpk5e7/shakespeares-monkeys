@@ -70,6 +70,7 @@ const typeDefs = gql`
     teamSkills: ChartData!
     teamResponsibilities: ChartData!
     teamPersonalInterests: ChartData!
+    teamTraining: ChartData!
     teamUpcomingImportantDates: [ImportantDate]!
   }
 
@@ -99,6 +100,7 @@ const typeDefs = gql`
       skills: [String]
       responsibilities: [String]
       personalInterests: [String]
+      training: [String]
       dates: [String]
     ): Message
     deleteTeamMember(id: ID!): Message

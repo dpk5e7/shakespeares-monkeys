@@ -76,22 +76,10 @@ const UserTable = () => {
       <Table
         striped
         selectable
-<<<<<<< HEAD
-        sortable
-        collapsing
-        // compact
-        celled
-        size="small"
-        // fixed
-        // className="attached fluid segment"
-        // mobile={16} tablet={8} computer={4}
-        color="orange"
-=======
         compact
         celled
         className="attached fluid segment"
         color="red"
->>>>>>> 01ef4f9137aa2856e537af58541ab27bd3bc6ef3
       >
         <Table.Header>
           <Table.Row>

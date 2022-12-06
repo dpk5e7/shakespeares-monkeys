@@ -78,9 +78,12 @@ const UserTable = () => {
         selectable
         sortable
         collapsing
-        compact
+        // compact
         celled
-        className="attached fluid segment"
+        size="small"
+        // fixed
+        // className="attached fluid segment"
+        // mobile={16} tablet={8} computer={4}
         color="orange"
       >
         <Table.Header>

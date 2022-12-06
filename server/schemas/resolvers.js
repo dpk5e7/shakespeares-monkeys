@@ -106,6 +106,32 @@ const resolvers = {
       return { labels, data };
     },
 
+    // query that returns team personal interests
+    teamTraining: async (parent, args, context) => {
+      const user = await User.findOne({ _id: context.user._id });
+      let labels = [];
+      let data = [];
+      for (let teamMember of user.team) {
+        labels = labels.concat(teamMember.training);
+      }
+      labels = [...new Set(labels)];
+
+      for (let i = 0; i < labels.length; i++) {
+        let count = 0;
+        for (let teamMember of user.team) {
+          for (let skill of teamMember.training) {
+            if (skill === labels[i]) {
+              count++;
+            }
+          }
+        }
+        data.push(count);
+        count = 0;
+      }
+
+      return { labels, data };
+    },
+
     // query that returns upcoming team important dates
     teamUpcomingImportantDates: async (parent, args, context) => {
       const user = await User.findOne({ _id: context.user._id });
@@ -218,6 +244,7 @@ const resolvers = {
         skills,
         responsibilities,
         personalInterests,
+        training,
         dates,
       },
       context
@@ -244,6 +271,7 @@ const resolvers = {
           oneTeamMember.skills = skills;
           oneTeamMember.responsibilities = responsibilities;
           oneTeamMember.personalInterests = personalInterests;
+          oneTeamMember.training = training;
 
           // Rebuild important dates
           const importantDates = [];

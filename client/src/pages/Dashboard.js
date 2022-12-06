@@ -3,6 +3,7 @@ import { Header, Card, Container } from "semantic-ui-react";
 import TeamSkillsChart from "../components/charts/TeamSkillsChart";
 import TeamResponsibilitiesChart from "../components/charts/TeamResponsibilitiesChart";
 import TeamPersonalInterestsChart from "../components/charts/TeamPersonalInterestsChart";
+import TeamTrainingChart from "../components/charts/TeamTrainingChart";
 import UpcomingDates from "../components/UpcomingDates";
 
 const Dashboard = () => {
@@ -25,6 +26,14 @@ const Dashboard = () => {
             </Card.Content>
             <Card.Content>
               <TeamResponsibilitiesChart />
+            </Card.Content>
+          </Card>
+          <Card centered raised>
+            <Card.Content>
+              <Card.Header>Training</Card.Header>
+            </Card.Content>
+            <Card.Content>
+              <TeamTrainingChart />
             </Card.Content>
           </Card>
           <Card centered raised>

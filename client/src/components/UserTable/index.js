@@ -78,7 +78,8 @@ const UserTable = () => {
         selectable
         compact
         celled
-        className="attached fluid segment"
+        stackable
+        className="fluid segment attached"
         color="red"
       >
         <Table.Header>

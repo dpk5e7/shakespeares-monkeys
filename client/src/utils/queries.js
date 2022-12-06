@@ -81,6 +81,15 @@ export const GET_TEAM_PERSONAL_INTERESTS = gql`
   }
 `;
 
+export const GET_TEAM_TRAINING = gql`
+  query teamTraining {
+    teamTraining {
+      labels
+      data
+    }
+  }
+`;
+
 export const GET_TEAM_UPCOMING_IMPORTANT_DATES = gql`
   query teamUpcomingImportantDates {
     teamUpcomingImportantDates {

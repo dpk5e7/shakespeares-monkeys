@@ -61,6 +61,7 @@ export const EDIT_TEAM_MEMBER = gql`
     $skills: [String]
     $responsibilities: [String]
     $personalInterests: [String]
+    $training: [String]
     $dates: [String]
   ) {
     editTeamMember(
@@ -77,6 +78,7 @@ export const EDIT_TEAM_MEMBER = gql`
       skills: $skills
       responsibilities: $responsibilities
       personalInterests: $personalInterests
+      training: $training
       dates: $dates
     ) {
       message

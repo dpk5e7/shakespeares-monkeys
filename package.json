@@ -19,6 +19,7 @@
   "dependencies": {
     "chart.js": "^4.0.1",
     "react-chartjs-2": "^5.0.1",
+    "react-tag-input-component": "^2.0.2",
     "react-to-print": "^2.14.10"
   }
 }

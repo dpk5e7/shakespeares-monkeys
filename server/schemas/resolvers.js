@@ -239,6 +239,7 @@ const resolvers = {
         pocName,
         pocPhoneNumber,
         pocRelationship,
+        experience,
         familySituation,
         notes,
         skills,
@@ -266,6 +267,7 @@ const resolvers = {
           oneTeamMember.emergencyPOC.name = pocName;
           oneTeamMember.emergencyPOC.phoneNumber = pocPhoneNumber;
           oneTeamMember.emergencyPOC.relationship = pocRelationship;
+          oneTeamMember.experience = experience;
           oneTeamMember.familySituation = familySituation;
           oneTeamMember.notes = notes;
           oneTeamMember.skills = skills;

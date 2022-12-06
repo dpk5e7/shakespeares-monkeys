@@ -33,6 +33,7 @@ const EditTeamMemberForm = (props) => {
   });
 
   // Text Area State
+  const [experience, setExperience] = useState(props.experience);
   const [familySituation, setFamilySituation] = useState(props.familySituation);
   const [notes, setNotes] = useState(props.notes);
 
@@ -57,6 +58,10 @@ const EditTeamMemberForm = (props) => {
     const name = event.target.name;
     const value = event.target.value;
     setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleExperienceChange = (event) => {
+    setExperience(event.target.value);
   };
 
   const handleFamilySituationChange = (event) => {
@@ -105,6 +110,7 @@ const EditTeamMemberForm = (props) => {
         const { data } = await editTeamMember({
           variables: {
             ...inputs,
+            experience,
             familySituation,
             notes,
             skills,
@@ -222,6 +228,13 @@ const EditTeamMemberForm = (props) => {
           placeHolder="enter training"
         />
         <em>press enter or comma to add new tag</em>
+
+        <Header size="medium">Experience</Header>
+        <Form.TextArea
+          name="experience"
+          value={experience}
+          onChange={handleExperienceChange}
+        />
 
         <Divider></Divider>
         <Header size="medium">Personal Details</Header>

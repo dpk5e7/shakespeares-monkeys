@@ -7,9 +7,11 @@ import {
   Icon,
   Grid,
   Container,
+  Button
 } from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
+import { Link } from "react-router-dom";
 // add apollo graphql
 import { useMutation } from "@apollo/client";
 import { EDIT_TEAM_MEMBER } from "../../utils/mutations";
@@ -317,6 +319,7 @@ const EditTeamMemberForm = (props) => {
           {successMessage && (
             <Message positive>
               <Message.Header>{successMessage}</Message.Header>
+              <Link to="/"><Button type="button">Return to Dashboard</Button></Link>
             </Message>
           )}
           {errorMessage && (

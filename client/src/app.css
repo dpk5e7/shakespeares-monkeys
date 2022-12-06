@@ -53,3 +53,21 @@
     border-top: 0;
   }
 }
+
+@media only screen and (max-width: 767px) {
+
+    .ui.table:not(.unstackable) tbody,
+    .ui.table:not(.unstackable) tr,
+    .ui.table:not(.unstackable) tr>td,
+    .ui.table:not(.unstackable) tr>th {
+        width: auto !important;
+        display: revert !important;
+    }
+    .ui.compact.segment {
+        display: contents;
+    }
+    .ui.container {
+        margin-left: 2px!important;
+        margin-right: 2px!important;
+    }
+}

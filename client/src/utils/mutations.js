@@ -56,6 +56,7 @@ export const EDIT_TEAM_MEMBER = gql`
     $pocName: String
     $pocPhoneNumber: String
     $pocRelationship: String
+    $experience: String
     $familySituation: String
     $notes: String
     $skills: [String]
@@ -73,6 +74,7 @@ export const EDIT_TEAM_MEMBER = gql`
       pocName: $pocName
       pocPhoneNumber: $pocPhoneNumber
       pocRelationship: $pocRelationship
+      experience: $experience
       familySituation: $familySituation
       notes: $notes
       skills: $skills

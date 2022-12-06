@@ -95,6 +95,7 @@ const typeDefs = gql`
       pocName: String
       pocPhoneNumber: String
       pocRelationship: String
+      experience: String
       familySituation: String
       notes: String
       skills: [String]

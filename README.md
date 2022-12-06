@@ -6,7 +6,7 @@
 ```
 The code contained in this repository is a Team Handbook. Designed to put "People First"
 in the office, this app will help managers and leaders of organizations 
-to keep persoanlized data points of their employees at hand. Need to remember an employee's
+to keep personalized data points of their employees at hand. Need to remember an employee's
 birthday?  The Team Handbook will make sure you never forget.  Want to celebrate your employees'
 anniversary with the company?  The Team Handbook will make sure you get that date correct. Need to
 quickly check who among your team has the best skills for a specific project, Team Handbook has
@@ -20,11 +20,10 @@ Team Handbook a truly "People First" app.
 - [Acceptance Criteria](#acceptance-criteria)
 - [Static Screenshots](#static-screenshots)
 - [Challenges](#challenges)
-- [Future Development](#future-development)
-- [Liscense](#liscense)
+- [Future Enhancements](#future-enhancements)
+- [License](#license)
 - [Contributing](#contributing)
 - [Technology Used](#technology-used)
-- [Contact Info](#contact-info)
 
 ## Acceptance Criteria
 ```md

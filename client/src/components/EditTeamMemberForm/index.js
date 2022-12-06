@@ -7,7 +7,7 @@ import {
   Icon,
   Grid,
   Container,
-  Button
+  Button,
 } from "semantic-ui-react";
 import { TagsInput } from "react-tag-input-component";
 
@@ -319,7 +319,11 @@ const EditTeamMemberForm = (props) => {
           {successMessage && (
             <Message positive>
               <Message.Header>{successMessage}</Message.Header>
-              <Link to="/"><Button type="button">Return to Dashboard</Button></Link>
+              <Link to="/team">
+                <Button type="button" compact>
+                  Return to Team
+                </Button>
+              </Link>
             </Message>
           )}
           {errorMessage && (

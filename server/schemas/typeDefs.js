@@ -94,6 +94,12 @@ const typeDefs = gql`
       pocName: String
       pocPhoneNumber: String
       pocRelationship: String
+      familySituation: String
+      notes: String
+      skills: [String]
+      responsibilities: [String]
+      personalInterests: [String]
+      dates: [String]
     ): Message
     deleteTeamMember(id: ID!): Message
     login(email: String!, password: String!): Auth

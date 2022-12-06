@@ -76,6 +76,7 @@ const UserTable = () => {
       <Table
         striped
         selectable
+<<<<<<< HEAD
         sortable
         collapsing
         // compact
@@ -85,15 +86,21 @@ const UserTable = () => {
         // className="attached fluid segment"
         // mobile={16} tablet={8} computer={4}
         color="orange"
+=======
+        compact
+        celled
+        className="attached fluid segment"
+        color="red"
+>>>>>>> 01ef4f9137aa2856e537af58541ab27bd3bc6ef3
       >
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>User Name</Table.HeaderCell>
             <Table.HeaderCell>Email</Table.HeaderCell>
             <Table.HeaderCell>Last Login</Table.HeaderCell>
-            <Table.HeaderCell>Admin</Table.HeaderCell>
-            <Table.HeaderCell>Locked</Table.HeaderCell>
-            <Table.HeaderCell>Delete</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Admin</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Locked</Table.HeaderCell>
+            <Table.HeaderCell textAlign="center">Delete</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -101,7 +108,7 @@ const UserTable = () => {
           {currentData.map(
             ({ _id, username, email, is_admin, is_locked, last_login }) => {
               return (
-                <Table.Row key={_id}>
+                <Table.Row key={_id} error={is_locked}>
                   <Table.Cell>{username}</Table.Cell>
                   <Table.Cell>{email}</Table.Cell>
                   <Table.Cell>{formatDate(last_login)}</Table.Cell>

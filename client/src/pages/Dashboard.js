@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "semantic-ui-react";
+import { Header, Card, Container } from "semantic-ui-react";
 import TeamSkillsChart from "../components/charts/TeamSkillsChart";
 import TeamResponsibilitiesChart from "../components/charts/TeamResponsibilitiesChart";
 import TeamPersonalInterestsChart from "../components/charts/TeamPersonalInterestsChart";

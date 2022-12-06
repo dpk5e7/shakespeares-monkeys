@@ -29,6 +29,12 @@ const EditTeamMember = () => {
           pocName={data.oneTeamMember.emergencyPOC.name}
           pocPhoneNumber={data.oneTeamMember.emergencyPOC.phoneNumber}
           pocRelationship={data.oneTeamMember.emergencyPOC.relationship}
+          familySituation={data.oneTeamMember.familySituation}
+          notes={data.oneTeamMember.notes}
+          skills={data.oneTeamMember.skills}
+          responsibilities={data.oneTeamMember.responsibilities}
+          personalInterests={data.oneTeamMember.personalInterests}
+          importantDates={data.oneTeamMember.importantDates}
         />
       )}
     </>

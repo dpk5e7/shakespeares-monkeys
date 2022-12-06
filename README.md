@@ -1,27 +1,27 @@
-# 📒 Team Builder App
+# 📒 Team Handbook
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 ```
-The code contained in this repository is a Team Builder. Designed to put "People First"
+The code contained in this repository is a Team Handbook. Designed to put "People First"
 in the office, this app will help managers and leaders of organizations 
 to keep persoanlized data points of their employees at hand. Need to remember an employee's
-birthday?  The Team Builder will make sure you never forget.  Want to celebrate your employees'
-anniversary with the company?  The Team Builder will make sure you get that date correct. Need to
-quickly check who among your tram has the best skills for a specific project, team Builder has
-got you covered.  Team Builder will help you not only have the most useful data points available
+birthday?  The Team Handbook will make sure you never forget.  Want to celebrate your employees'
+anniversary with the company?  The Team Handbook will make sure you get that date correct. Need to
+quickly check who among your team has the best skills for a specific project, Team Handbook has
+got you covered.  Team Handbook will help you not only have the most useful data points available
 for your employees, but will make them feel more valued within your organization which makes
-Team Builder a truly "People First" app.
+Team Handbook a truly "People First" app.
 ```
-### [Deployment Link]()
+### [https://dpk5e7-team-handbook.herokuapp.com/](https://dpk5e7-team-handbook.herokuapp.com/)
 
 ## Table Of Contents
 - [Acceptance Criteria](#acceptance-criteria)
 - [Static Screenshots](#static-screenshots)
-- [Installation](#installation)
 - [Challenges](#challenges)
 - [Future Development](#future-development)
+- [Liscense](#liscense)
 - [Contributing](#contributing)
 - [Technology Used](#technology-used)
 - [Contact Info](#contact-info)
@@ -63,32 +63,47 @@ Example charts include:
 ```
 
 ## Static Screenshots
-## Installation
+
+![Screenshot1](./assets/screenshot1.png)
+
+![Screenshot2](./assets/screenshot2.png)
+
+![Screenshot3](./assets/screenshot3.png)
+
 ## Challenges
-## Future Development
+- Modal troubles (Bootstrap vs Semantic UI)
+- Single-Query to render
+
+## Future Enhancements
+- Have the user be able to upload a picture for each team member.
+- Potential to build in organization structure (and create a structural hierarchy Admins-->Managers-->teamleads)
+- PKI-Public Key Infrastructure
+- Having the ability to transfer team members to another manager
+- Create a modal for sign in/sign up
+- more user-friendly error messages
+
+## License
+
+[![License:](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Contributing
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 ## Technology Used
-- [Reactjs](https://reactjs.org/): for front-end development
-- [Nodejs](nodejs.org)
-- [Heroku](https://www.heroku.com/): for deployment
-- [CryptoJS](): 
-- [ChartJS](): 
-- [Semantic-UI](): 
-- [Apollo GraphQL](): 
-- [MongoDB](): 
-- [Mongoose](): 
-- [JavaScript Web Tokens](): 
+- [Reactjs](https://reactjs.org/): Front-end development
+- [Nodejs](nodejs.org): Server-side javascript development
+- [Express.js](https://expressjs.com/): Web server
+- [Heroku](https://www.heroku.com/): Web server deployment
+- [CryptoJS](https://cryptojs.gitbook.io/docs/): Encryption at Rest 
+- [ChartJS](https://react-chartjs-2.js.org/): Data Visualization
+- [Semantic-UI](https://react.semantic-ui.com/): React Component Library
+- [Apollo GraphQL](https://www.apollographql.com/): GraphQL API calls
+- [MongoDB](https://www.mongodb.com): NoSQL data storage
+- [Mongoose](https://mongoosejs.com/): Data Modeling
+- [JavaScript Web Tokens](https://jwt.io/): Authentication
 
 ## Contributors
 - [Dan Kelly](https://github.com/dpk5e7): Project Manager, Charts, Auth
 - [Nathan Aramyan](https://github.com/shniglehosen): Tables and Routes
 - [Parker Riddle](https://github.com/Priddle88): UI Styling
 - [Rod Bennett](https://github.com/RodBennett): Navigation and Routers
-
-## Mock-Up
-
-The following animation shows the web application's appearance and functionality:
-
-![User clicks through About Me, Portfolio, Resume, and Contact sections on the webpage and enters information on Contact page.](./Assets/20-react-homework-demo-01.gif)

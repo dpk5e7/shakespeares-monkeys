@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Form, Header, Divider, Message } from "semantic-ui-react";
+import { Form, Header, Divider, Message, Container } from "semantic-ui-react";
 
 // add apollo graphql
-import { useMutation, useQuery } from "@apollo/client";
-import { GET_MY_TEAM } from "../utils/queries";
+import { useMutation } from "@apollo/client";
 import { ADD_TEAM_MEMBER } from "../utils/mutations";
 
 const AddTeamMember = () => {
@@ -12,14 +11,18 @@ const AddTeamMember = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    mailingAddress: "",
+    pocName: "",
+    pocPhoneNumber: "",
+    pocRelationship: "",
+  });
 
   // add addUser mutation
   const [addTeamMember] = useMutation(ADD_TEAM_MEMBER);
-
-  // This is just to refresh the team cache
-  const { loading, error, data, refetch } = useQuery(GET_MY_TEAM);
-  const teamData = data?.team || [];
 
   // logic goes here
   const handleChange = (event) => {
@@ -41,7 +44,6 @@ const AddTeamMember = () => {
 
         setErrorMessage("");
         setSuccessMessage(data?.addTeamMember.message);
-        refetch(); // refresh the my team cache
       } catch (err) {
         setErrorMessage(err.message);
         setSuccessMessage("");
@@ -60,7 +62,7 @@ const AddTeamMember = () => {
   };
 
   return (
-    <div className="teamInformation">
+    <Container>
       <Form onSubmit={handleFormSubmit}>
         <Header>Contact Info</Header>
         <Form.Group>
@@ -128,21 +130,23 @@ const AddTeamMember = () => {
           ></Form.Field>
         </Form.Group>
         <Divider></Divider>
-        <Form.Button primary center>
-          Submit
-        </Form.Button>
-        {successMessage && (
-          <Message positive>
-            <Message.Header>{successMessage}</Message.Header>
-          </Message>
-        )}
-        {errorMessage && (
-          <Message negative>
-            <Message.Header>{errorMessage}</Message.Header>
-          </Message>
-        )}
+        <Form.Group inline>
+          <Form.Button primary center disabled={!inputs.name}>
+            Submit
+          </Form.Button>
+          {successMessage && (
+            <Message positive>
+              <Message.Header>{successMessage}</Message.Header>
+            </Message>
+          )}
+          {errorMessage && (
+            <Message negative>
+              <Message.Header>{errorMessage}</Message.Header>
+            </Message>
+          )}
+        </Form.Group>
       </Form>
-    </div>
+    </Container>
   );
 };
 

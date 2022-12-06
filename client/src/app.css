@@ -61,15 +61,21 @@
     .ui.table:not(.unstackable) tr,
     .ui.table:not(.unstackable) tr>td,
     .ui.table:not(.unstackable) tr>th {
-        width: auto !important;
-        display: revert !important;
+        width: fit-content !important;
+        display: inline-table !important;
     }
+
     .ui.compact.segment {
         display: contents;
     }
+
     .ui.container {
-        margin-left: 2px!important;
-        margin-right: 2px!important;
+        margin-left: 2px !important;
+        margin-right: 2px !important;
+    }
+
+    .ui.table:not(.unstackable) tr>td,
+    .ui.table:not(.unstackable) tr>th {
+        padding: 0.1em 5% !important;
     }
 }
-

@@ -134,7 +134,7 @@ const EditTeamMemberForm = (props) => {
     <Container>
       <Form onSubmit={handleFormSubmit}>
         <Header size="medium">Contact Info</Header>
-        <Form.Group>
+        <Form.Group widths="equal">
           <Form.Field
             label="Name:"
             name="name"
@@ -170,10 +170,10 @@ const EditTeamMemberForm = (props) => {
           ></Form.Field>
         </Form.Group>
 
-        <Divider></Divider>
+        {/* <Divider></Divider> */}
 
         <Header size="medium">Emergency POC</Header>
-        <Form.Group>
+        <Form.Group widths="equal">
           <Form.Field
             label="Name:"
             name="pocName"

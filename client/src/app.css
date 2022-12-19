@@ -13,6 +13,10 @@
 }
 
 @media only screen and (max-width: 622px) {
+  .ui.form {
+    width: 90%;
+    margin-left: 10px
+  }
   .ui.cards {
     justify-content: center;
   }
@@ -58,5 +62,9 @@
   .ui.table:not(.unstackable) tr > td,
   .ui.table:not(.unstackable) tr > th {
     padding: 0.75em 0.8em !important;
+  }
+  .ui.form {
+    width: 90%;
+    margin-left: 10px
   }
 }

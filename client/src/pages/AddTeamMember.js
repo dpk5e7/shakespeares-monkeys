@@ -73,7 +73,7 @@ const AddTeamMember = () => {
     <Container>
       <Form onSubmit={handleFormSubmit}>
         <Header>Contact Info</Header>
-        <Form.Group>
+        <Form.Group widths="equal">
           <Form.Field
             label="Name:"
             name="name"
@@ -108,10 +108,10 @@ const AddTeamMember = () => {
             onChange={handleChange}
           ></Form.Field>
         </Form.Group>
-        <Divider></Divider>
+        {/* <Divider></Divider> */}
 
         <Header>Emergency POC</Header>
-        <Form.Group>
+        <Form.Group widths="equal">
           <Form.Field
             label="Name:"
             name="pocName"
